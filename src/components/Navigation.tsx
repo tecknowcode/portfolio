@@ -67,12 +67,6 @@ export const Navigation = () => {
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-4">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Download className="w-4 h-4" />
-                  Resume
-                </Button>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button size="sm" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
                   Let's Talk
                 </Button>
