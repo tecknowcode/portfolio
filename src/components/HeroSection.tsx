@@ -122,24 +122,6 @@ export const HeroSection = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
-      {/* Floating Skill Badges */}
-      <FloatingBadge delay={0.8} className="top-32 left-[10%] hidden md:block">
-        <Brain className="w-4 h-4 text-secondary" />
-        Machine Learning
-      </FloatingBadge>
-      <FloatingBadge delay={1} className="top-40 right-[15%] hidden md:block">
-        <Database className="w-4 h-4 text-accent" />
-        Big Data
-      </FloatingBadge>
-      <FloatingBadge delay={1.2} className="bottom-40 left-[15%] hidden md:block">
-        <TrendingUp className="w-4 h-4 text-secondary" />
-        Analytics
-      </FloatingBadge>
-      <FloatingBadge delay={1.4} className="bottom-32 right-[10%] hidden md:block">
-        <Sparkles className="w-4 h-4 text-accent" />
-        AI Solutions
-      </FloatingBadge>
-
       {/* Main Content */}
       <div className="section-container relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -252,17 +234,6 @@ export const HeroSection = () => {
             </motion.a>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
-            className="grid grid-cols-3 gap-8 max-w-md mx-auto"
-          >
-            <StatCounter value={90} suffix="%" label="Model Accuracy" />
-            <StatCounter value={50} suffix="+" label="Projects" />
-            <StatCounter value={100} suffix="K+" label="Records Analyzed" />
-          </motion.div>
         </div>
       </div>
 
