@@ -111,18 +111,6 @@ export const AboutSection = () => {
                 ))}
               </div>
 
-              {/* Resume Download */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ delay: 0.7 }}
-                className="mt-8"
-              >
-                <Button className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 gap-2">
-                  <Download className="w-4 h-4" />
-                  Download Resume
-                </Button>
-              </motion.div>
             </div>
           </motion.div>
 
