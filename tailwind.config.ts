@@ -98,8 +98,8 @@ export default {
           "50%": { transform: "translateY(-20px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--secondary) / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(var(--secondary) / 0.6)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(186 72% 38% / 0.2)" },
+          "50%": { boxShadow: "0 0 35px hsl(186 72% 38% / 0.4)" },
         },
         "typewriter": {
           "from": { width: "0" },
