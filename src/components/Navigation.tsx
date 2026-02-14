@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Download, Linkedin, Github, Mail } from "lucide-react";
+import { Menu, X, Linkedin, Github, Mail, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
@@ -14,6 +14,12 @@ const navLinks = [
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return document.documentElement.classList.contains("dark");
+    }
+    return false;
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +28,12 @@ export const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleDark = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+  };
 
   return (
     <>
@@ -66,9 +78,18 @@ export const Navigation = () => {
 
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-4">
+              <motion.button
+                onClick={toggleDark}
+                className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Toggle dark mode"
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              </motion.button>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="sm" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-                  Let's Talk
+                <Button asChild size="sm" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
+                  <a href="#contact">Let's Talk</a>
                 </Button>
               </motion.div>
             </div>
