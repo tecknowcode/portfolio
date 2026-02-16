@@ -2,107 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* Data-Driven Elegance Design System */
+/* Executive Corporate Design System */
 
 @layer base {
   :root {
-    /* Core Colors - Refined Professional Palette */
-    --background: 220 20% 97%;
-    --foreground: 224 30% 18%;
+    /* Background: #F8FAFC */
+    --background: 210 40% 98%;
+    /* Text: #020617 */
+    --foreground: 222 84% 5%;
 
-    --card: 220 20% 99%;
-    --card-foreground: 224 30% 18%;
+    /* Card: #FFFFFF */
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 5%;
 
-    --popover: 220 20% 99%;
-    --popover-foreground: 224 30% 18%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
 
-    /* Primary - Deep Indigo */
-    --primary: 230 45% 26%;
-    --primary-foreground: 220 20% 97%;
+    /* Primary: #0F172A (Deep Executive Blue) */
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
 
-    /* Secondary - Rich Teal */
-    --secondary: 186 72% 38%;
+    /* Secondary: #1E293B (Slate Blue) */
+    --secondary: 217 33% 17%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Accent - Soft Emerald */
-    --accent: 168 60% 42%;
+    /* Accent: #2563EB (Professional Tech Blue) */
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 220 18% 93%;
-    --muted-foreground: 220 12% 50%;
+    /* Muted: #F1F5F9 */
+    --muted: 210 40% 96%;
+    /* Muted text: #64748B */
+    --muted-foreground: 215 16% 47%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 18% 89%;
-    --input: 220 18% 89%;
-    --ring: 186 72% 38%;
+    /* Border: #E2E8F0 */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    /* Ring: accent blue */
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
     /* Custom Portfolio Colors */
-    --gradient-start: 230 55% 52%;
-    --gradient-end: 186 72% 38%;
-    --glass: 220 20% 99% / 0.75;
-    --glass-border: 220 18% 89% / 0.5;
-    
-    /* Skill Colors */
-    --skill-python: 220 70% 52%;
-    --skill-ml: 168 60% 42%;
-    --skill-data: 186 72% 38%;
+    --gradient-start: 222 47% 11%;
+    --gradient-end: 217 91% 60%;
+    --glass: 0 0% 100% / 0.8;
+    --glass-border: 214 32% 91% / 0.5;
 
-    --sidebar-background: 220 20% 97%;
-    --sidebar-foreground: 224 30% 18%;
-    --sidebar-primary: 230 45% 26%;
-    --sidebar-primary-foreground: 220 20% 97%;
-    --sidebar-accent: 220 18% 93%;
-    --sidebar-accent-foreground: 224 30% 18%;
-    --sidebar-border: 220 18% 89%;
-    --sidebar-ring: 186 72% 38%;
+    /* Accent variants */
+    --accent-hover: 224 76% 48%;
+    --accent-soft: 217 91% 60%;
+
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 222 84% 5%;
+    --sidebar-primary: 222 47% 11%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 84% 5%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
-    --background: 228 30% 7%;
-    --foreground: 220 20% 95%;
+    /* Background: #0F172A */
+    --background: 222 47% 11%;
+    /* Text: #F8FAFC */
+    --foreground: 210 40% 98%;
 
-    --card: 228 28% 10%;
-    --card-foreground: 220 20% 95%;
+    /* Card: #1E293B */
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 228 28% 10%;
-    --popover-foreground: 220 20% 95%;
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 220 20% 95%;
-    --primary-foreground: 228 30% 7%;
+    /* Primary flipped for dark */
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
 
-    --secondary: 186 72% 38%;
+    --secondary: 217 91% 60%;
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 168 60% 42%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 228 20% 15%;
-    --muted-foreground: 220 14% 60%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 220 20% 95%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 228 20% 15%;
-    --input: 228 20% 15%;
-    --ring: 186 72% 38%;
+    --border: 217 33% 22%;
+    --input: 217 33% 22%;
+    --ring: 217 91% 60%;
 
-    --glass: 228 28% 10% / 0.8;
-    --glass-border: 220 20% 95% / 0.08;
+    --glass: 217 33% 17% / 0.8;
+    --glass-border: 210 40% 98% / 0.08;
 
-    --sidebar-background: 228 30% 7%;
-    --sidebar-foreground: 220 20% 95%;
-    --sidebar-primary: 186 72% 38%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 228 20% 15%;
-    --sidebar-accent-foreground: 220 20% 95%;
-    --sidebar-border: 228 20% 15%;
-    --sidebar-ring: 186 72% 38%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 22%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -129,19 +138,20 @@
 @layer components {
   /* Glassmorphism Card */
   .glass-card {
-    @apply bg-card/70 backdrop-blur-xl border border-white/20 shadow-xl;
+    @apply bg-card/80 backdrop-blur-xl border border-border shadow-lg;
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
   }
 
   /* Gradient Text */
   .gradient-text {
-    @apply bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent;
   }
 
   /* Gradient Border */
   .gradient-border {
     @apply relative;
     background: linear-gradient(var(--background), var(--background)) padding-box,
-                linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent))) border-box;
+                linear-gradient(135deg, hsl(var(--accent)), hsl(217 91% 70%)) border-box;
     border: 2px solid transparent;
   }
 
@@ -160,13 +170,23 @@
     animation: skill-fill 1.5s ease-out forwards;
   }
 
-  /* Hero Button */
+  /* Hero Button - Primary */
   .hero-button {
-    @apply relative overflow-hidden bg-gradient-to-r from-secondary to-accent text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-secondary/25;
+    @apply relative overflow-hidden bg-accent text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  }
+  .hero-button:hover {
+    background-color: hsl(224 76% 48%);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
   }
 
+  /* Hero Button - Outline / Secondary */
   .hero-button-outline {
-    @apply relative overflow-hidden border-2 border-secondary text-secondary font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-secondary hover:text-white hover:scale-105;
+    @apply relative overflow-hidden border-2 border-primary text-primary font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105;
+    background: transparent;
+  }
+  .hero-button-outline:hover {
+    @apply bg-muted;
   }
 
   /* Section Container */
@@ -176,12 +196,16 @@
 
   /* Project Card */
   .project-card {
-    @apply glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-secondary/10;
+    @apply glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02];
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+  }
+  .project-card:hover {
+    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
   }
 
   /* Skill Badge */
   .skill-badge {
-    @apply px-4 py-2 rounded-full text-sm font-medium bg-secondary/10 text-secondary border border-secondary/20 transition-all duration-300 hover:bg-secondary hover:text-white hover:scale-105;
+    @apply px-4 py-2 rounded-full text-sm font-medium bg-accent/10 text-accent border border-accent/20 transition-all duration-300 hover:bg-accent hover:text-white hover:scale-105;
   }
 
   /* Nav Link */
@@ -191,7 +215,7 @@
 
   .nav-link::after {
     content: '';
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-secondary to-accent transition-all duration-300;
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300;
   }
 
   .nav-link:hover::after {
@@ -210,7 +234,7 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-secondary/50 rounded-full hover:bg-secondary;
+    @apply bg-accent/40 rounded-full hover:bg-accent/60;
   }
 }
 
@@ -225,10 +249,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3);
+    box-shadow: 0 0 20px hsl(217 91% 60% / 0.2);
   }
   50% {
-    box-shadow: 0 0 40px hsl(var(--secondary) / 0.6);
+    box-shadow: 0 0 35px hsl(217 91% 60% / 0.35);
   }
 }
 
