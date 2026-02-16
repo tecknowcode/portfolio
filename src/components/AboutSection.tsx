@@ -1,46 +1,41 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Briefcase, Award, Download, Code2, LineChart, Lightbulb } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { GraduationCap, Briefcase, Award, Users, Wrench, BookOpen, Plane } from "lucide-react";
 
-const highlights = [
-  {
-    icon: Code2,
-    title: "Technical Excellence",
-    description: "Proficient in Python, SQL, and cutting-edge ML frameworks",
-  },
-  {
-    icon: LineChart,
-    title: "Data-Driven",
-    description: "Transforming raw data into actionable business insights",
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovation Focus",
-    description: "Building AI solutions that solve real-world problems",
-  },
+const stats = [
+  { number: "10+", label: "Years Experience" },
+  { number: "25+", label: "Projects Completed" },
+  { number: "100+", label: "Students Mentored" },
+  { number: "5+", label: "Certifications" },
 ];
 
 const timeline = [
   {
-    year: "2024",
-    title: "Data Science Freelancer",
-    description: "Delivering ML solutions for startups and enterprises",
-    icon: Briefcase,
+    year: "2025",
+    title: "Masters in Data Science & ML",
+    institution: "Scaler Academy",
+    icon: GraduationCap,
   },
   {
-    year: "2023",
-    title: "Advanced Certifications",
-    description: "IBM, Coursera, DataCamp specializations completed",
+    year: "2021",
+    title: "M.E in Computer Engineering",
+    institution: "Mumbai University",
     icon: Award,
   },
   {
-    year: "2022",
-    title: "B.Sc. Data Science",
-    description: "Graduated with focus on Machine Learning & Analytics",
+    year: "2007",
+    title: "B.E in Computer Engineering",
+    institution: "Mumbai University",
     icon: GraduationCap,
   },
+];
+
+const beyondData = [
+  { icon: Users, label: "Mentoring Students" },
+  { icon: Wrench, label: "Exploring AI Tools" },
+  { icon: BookOpen, label: "Teaching" },
+  { icon: Plane, label: "Travel" },
 ];
 
 export const AboutSection = () => {
@@ -48,104 +43,123 @@ export const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent" />
-      
-      <div className="section-container relative z-10" ref={ref}>
+    <section id="about" className="py-20 md:py-28 bg-muted">
+      <div className="section-container" ref={ref}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="text-secondary font-medium text-sm uppercase tracking-widest">About Me</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 mb-4">
-            The <span className="gradient-text">Journey</span>
+          <span className="text-accent font-medium text-sm uppercase tracking-widest">About Me</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-3 mb-4 text-foreground">
+            About Me
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            A passionate data scientist on a mission to unlock the power of data and machine learning
-          </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left - Story */}
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+          {/* Left Column — 60% */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-3"
           >
-            <div className="glass-card rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4">Hello, I'm Siddhesh! 👋</h3>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Based in vibrant <span className="text-foreground font-medium">Mumbai, India</span>, 
-                  I'm a data scientist who believes that every dataset tells a story waiting to be discovered.
-                </p>
-                <p>
-                  My journey into data science began with a simple curiosity: 
-                  <span className="text-secondary font-medium"> How can we make machines learn from patterns humans can't see?</span> 
-                  This question led me to dive deep into machine learning, NLP, and computer vision.
-                </p>
-                <p>
-                  Today, I specialize in building <span className="text-accent font-medium">end-to-end ML pipelines</span>, 
-                  predictive models, and data-driven solutions that help businesses make smarter decisions.
-                </p>
-              </div>
+            {/* Name + Title */}
+            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-1">
+              Siddhesh Masurkar
+            </h3>
+            <p className="text-accent font-semibold text-lg mb-6">
+              Senior Data Scientist | AI Solutions Architect
+            </p>
 
-              {/* Highlights */}
-              <div className="grid sm:grid-cols-3 gap-4 mt-8">
-                {highlights.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="text-center p-4 rounded-xl bg-secondary/5 hover:bg-secondary/10 transition-colors"
-                  >
-                    <item.icon className="w-8 h-8 mx-auto mb-2 text-secondary" />
-                    <h4 className="font-semibold text-sm mb-1">{item.title}</h4>
-                    <p className="text-xs text-muted-foreground">{item.description}</p>
-                  </motion.div>
-                ))}
-              </div>
+            {/* Brand Statement */}
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10">
+              I transform complex data into intelligent systems that drive business decisions.
+              With over a decade of experience in analytics, machine learning, and education,
+              I specialize in building end-to-end AI solutions that create measurable impact.
+            </p>
 
-            </div>
-          </motion.div>
-
-          {/* Right - Timeline */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative"
-          >
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-secondary via-accent to-secondary/20" />
-            
-            <div className="space-y-8">
-              {timeline.map((item, index) => (
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+              {stats.map((stat, index) => (
                 <motion.div
-                  key={item.year}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.5 + index * 0.15 }}
-                  className="relative pl-20"
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                  className="bg-card rounded-2xl p-6 text-center shadow-sm border border-border hover:shadow-md hover:-translate-y-1 transition-all duration-300"
                 >
-                  {/* Timeline Node */}
-                  <div className="absolute left-4 top-1 w-8 h-8 rounded-full bg-secondary/10 border-2 border-secondary flex items-center justify-center">
-                    <item.icon className="w-4 h-4 text-secondary" />
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="glass-card rounded-xl p-6 hover:shadow-lg transition-shadow">
-                    <span className="text-secondary font-mono text-sm">{item.year}</span>
-                    <h4 className="text-lg font-bold mt-1">{item.title}</h4>
-                    <p className="text-muted-foreground text-sm mt-1">{item.description}</p>
-                  </div>
+                  <span className="text-3xl font-bold text-accent">{stat.number}</span>
+                  <p className="text-muted-foreground text-sm mt-2">{stat.label}</p>
                 </motion.div>
               ))}
             </div>
+          </motion.div>
+
+          {/* Right Column — 40% */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:col-span-2"
+          >
+            {/* Timeline */}
+            <h4 className="text-xl font-bold text-foreground mb-6">Career Journey</h4>
+            <div className="relative pl-8">
+              {/* Vertical Line */}
+              <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
+
+              <div className="space-y-6">
+                {timeline.map((item, index) => (
+                  <motion.div
+                    key={item.year}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.4 + index * 0.15 }}
+                    className="relative"
+                  >
+                    {/* Dot */}
+                    <div className="absolute -left-5 top-3 w-4 h-4 rounded-full bg-accent border-[3px] border-background shadow-[0_0_0_3px_hsl(217_91%_60%/0.2)]" />
+
+                    <div className="bg-card rounded-xl p-5 shadow-sm border border-border hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                      <div className="flex items-center gap-3 mb-1">
+                        <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                          <item.icon className="w-4 h-4 text-accent" />
+                        </div>
+                        <span className="text-accent font-mono text-sm font-semibold">{item.year}</span>
+                      </div>
+                      <h5 className="font-bold text-foreground text-sm mt-2">{item.title}</h5>
+                      <p className="text-muted-foreground text-xs mt-0.5">{item.institution}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Beyond Data */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.8 }}
+              className="mt-10"
+            >
+              <h4 className="text-xl font-bold text-foreground mb-4">Beyond Data</h4>
+              <div className="grid grid-cols-2 gap-3">
+                {beyondData.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border"
+                  >
+                    <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-4 h-4 text-accent" />
+                    </div>
+                    <span className="text-sm font-medium text-foreground">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
