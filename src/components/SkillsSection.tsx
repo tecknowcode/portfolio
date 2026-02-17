@@ -1,15 +1,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Brain, TrendingUp, Cpu, BarChart3, Database, LineChart, Sigma, Users, Server, Code, Layers, Eye } from "lucide-react";
+import { Brain, Database, Sigma, Server, Layers, Eye } from "lucide-react";
 
-const coreStrengths = [
-  { icon: Brain, label: "End-to-End ML Systems" },
-  { icon: TrendingUp, label: "Predictive Analytics" },
-  { icon: Cpu, label: "AI Product Development" },
-  { icon: BarChart3, label: "Data Storytelling" },
-];
-
-const leftSkillGroups = [
+const skillGroups = [
   {
     title: "Machine Learning & AI",
     icon: Brain,
@@ -25,9 +18,6 @@ const leftSkillGroups = [
     icon: Server,
     skills: ["AWS", "Docker", "MLflow", "DVC", "CI/CD", "Git", "GitHub", "Flask", "Streamlit"],
   },
-];
-
-const rightSkillGroups = [
   {
     title: "Databases",
     icon: Database,
@@ -43,14 +33,9 @@ const rightSkillGroups = [
     icon: Sigma,
     skills: ["Statistics", "Probability", "Hypothesis Testing", "Calculus", "Time Series"],
   },
-  {
-    title: "Soft Skills",
-    icon: Users,
-    skills: ["Leadership", "Problem Solving", "Critical Thinking", "Team Collaboration", "Business Understanding"],
-  },
 ];
 
-const SkillGroup = ({ group, delay }: { group: typeof leftSkillGroups[0]; delay: number }) => {
+const SkillGroup = ({ group, delay }: { group: typeof skillGroups[0]; delay: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const Icon = group.icon;
@@ -93,7 +78,6 @@ export const SkillsSection = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(217_91%_60%/0.04),transparent_60%)]" />
 
       <div className="section-container relative z-10" ref={ref}>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -109,48 +93,10 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        {/* Core Strengths */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14"
-        >
-          {coreStrengths.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 15 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                className="bg-card border border-border rounded-2xl p-5 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group"
-                style={{ boxShadow: "0 2px 12px rgba(15, 23, 42, 0.06)" }}
-              >
-                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-accent/20 transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-accent" />
-                </div>
-                <span className="text-sm font-semibold text-foreground">{item.label}</span>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Two-column skills */}
-        <div className="grid lg:grid-cols-5 gap-6">
-          {/* Left - 3/5 */}
-          <div className="lg:col-span-3 space-y-5">
-            {leftSkillGroups.map((group, i) => (
-              <SkillGroup key={group.title} group={group} delay={0.1 * i} />
-            ))}
-          </div>
-
-          {/* Right - 2/5 */}
-          <div className="lg:col-span-2 space-y-5">
-            {rightSkillGroups.map((group, i) => (
-              <SkillGroup key={group.title} group={group} delay={0.1 * i} />
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillGroups.map((group, i) => (
+            <SkillGroup key={group.title} group={group} delay={0.1 * i} />
+          ))}
         </div>
       </div>
     </section>
