@@ -184,7 +184,7 @@ export const ProjectsSection = () => {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-muted/30" />
 
-      <div className="section-container relative z-10" ref={ref}>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={ref}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -226,7 +226,7 @@ export const ProjectsSection = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
