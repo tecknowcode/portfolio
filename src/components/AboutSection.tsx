@@ -111,68 +111,48 @@ export const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-2"
           >
-            {/* Premium Timeline */}
-            <div className="relative rounded-2xl p-6 md:p-8 overflow-hidden" style={{ background: 'linear-gradient(135deg, hsl(222 47% 11%), hsl(222 47% 5%))' }}>
-              {/* Subtle background glow */}
-              <div className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-20 blur-3xl" style={{ background: 'hsl(217 91% 60%)' }} />
-              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-10 blur-3xl" style={{ background: 'hsl(217 91% 60%)' }} />
+            {/* Clean Corporate Timeline */}
+            <div className="bg-card rounded-[18px] p-7 border border-border" style={{ boxShadow: '0 6px 20px rgba(0,0,0,0.06)' }}>
+              <span className="text-accent font-medium text-xs uppercase tracking-widest">Career Path</span>
+              <h4 className="text-xl font-bold text-foreground mt-1 mb-7">Career Journey</h4>
 
-              <h4 className="text-xl font-bold text-white mb-8 relative z-10">Career Journey</h4>
-
-              <div className="relative pl-10">
-                {/* Glowing vertical line */}
-                <div className="absolute left-[13px] top-2 bottom-2 w-px" style={{ background: 'linear-gradient(to bottom, hsl(217 91% 60% / 0.6), hsl(217 91% 60% / 0.1))' }} />
-                <div className="absolute left-[12px] top-2 bottom-2 w-[3px] blur-sm" style={{ background: 'linear-gradient(to bottom, hsl(217 91% 60% / 0.4), transparent)' }} />
+              <div className="relative pl-8">
+                {/* Vertical timeline line */}
+                <div className="absolute left-[5px] top-2 bottom-2 w-0.5 bg-border" />
 
                 <div className="space-y-6">
                   {timeline.map((item, index) => (
                     <motion.div
                       key={item.year}
-                      initial={{ opacity: 0, x: 30 }}
+                      initial={{ opacity: 0, x: 20 }}
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
+                      transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
                       className="relative group"
                     >
-                      {/* Pulsing timeline dot */}
-                      <div className="absolute -left-10 top-5 z-10">
-                        <div className="w-[26px] h-[26px] rounded-full flex items-center justify-center" style={{ background: 'hsl(222 47% 11%)' }}>
-                          <div className="w-3 h-3 rounded-full pulse-glow" style={{ background: 'hsl(217 91% 60%)' }} />
-                        </div>
+                      {/* Timeline dot */}
+                      <div className="absolute -left-8 top-5 z-10 flex items-center justify-center">
+                        <div className="w-3 h-3 rounded-full bg-accent border-[3px] border-card" style={{ boxShadow: '0 0 0 3px hsl(217 91% 60% / 0.15)' }} />
                       </div>
 
-                      {/* Glass card */}
-                      <div
-                        className="relative rounded-2xl p-5 backdrop-blur-xl border transition-all duration-500 group-hover:-translate-y-1 cursor-default overflow-hidden"
-                        style={{
-                          background: 'hsl(217 33% 17% / 0.5)',
-                          borderColor: 'hsl(210 40% 98% / 0.08)',
-                          boxShadow: '0 4px 24px hsl(222 47% 5% / 0.3)',
-                        }}
+                      {/* Card */}
+                      <div className="bg-card rounded-[14px] p-5 border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:border-blue-200 cursor-default" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.borderColor = 'hsl(217 91% 60% / 0.3)';
-                          e.currentTarget.style.boxShadow = '0 8px 32px hsl(217 91% 60% / 0.15)';
+                          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.borderColor = 'hsl(210 40% 98% / 0.08)';
-                          e.currentTarget.style.boxShadow = '0 4px 24px hsl(222 47% 5% / 0.3)';
+                          e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
                         }}
                       >
-                        {/* Gradient border accent on hover */}
-                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: 'linear-gradient(135deg, hsl(217 91% 60% / 0.05), transparent)' }} />
-
-                        <div className="flex items-start gap-4 relative z-10">
-                          {/* Icon with gradient */}
-                          <div
-                            className={`w-11 h-11 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center flex-shrink-0 shadow-lg transition-transform duration-300 group-hover:scale-110`}
-                          >
-                            <item.icon className="w-5 h-5 text-white" />
+                        <div className="flex items-start gap-4">
+                          {/* Icon */}
+                          <div className="w-10 h-10 rounded-[10px] bg-accent/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                            <item.icon className="w-5 h-5 text-accent" />
                           </div>
 
                           <div className="flex-1 min-w-0">
-                            <span className="font-mono text-sm font-bold" style={{ color: 'hsl(217 91% 60%)' }}>{item.year}</span>
-                            <h5 className="font-bold text-white text-sm mt-1 leading-snug">{item.title}</h5>
-                            <p className="text-xs mt-0.5" style={{ color: 'hsl(215 20% 65%)' }}>{item.institution}</p>
-                            <p className="text-xs mt-2 leading-relaxed" style={{ color: 'hsl(215 16% 47%)' }}>{item.description}</p>
+                            <span className="text-accent font-semibold text-sm">{item.year}</span>
+                            <h5 className="font-semibold text-foreground text-base mt-0.5 leading-snug">{item.title}</h5>
+                            <p className="text-muted-foreground text-sm mt-0.5">{item.institution}</p>
                           </div>
                         </div>
                       </div>
