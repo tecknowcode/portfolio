@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Briefcase, Award, Users, Wrench, BookOpen, Plane } from "lucide-react";
+import { GraduationCap, Award, Users, Wrench, BookOpen, Plane, Brain } from "lucide-react";
 
 const stats = [
   { number: "10+", label: "Years Experience" },
@@ -15,19 +15,25 @@ const timeline = [
     year: "2025",
     title: "Masters in Data Science & ML",
     institution: "Scaler Academy",
-    icon: GraduationCap,
+    description: "Advanced specialization in machine learning algorithms, deep learning, and scalable AI systems.",
+    icon: Brain,
+    gradient: "from-blue-500 to-cyan-400",
   },
   {
     year: "2021",
     title: "M.E in Computer Engineering",
     institution: "Mumbai University",
+    description: "Research-focused postgraduate degree with emphasis on intelligent computing and data systems.",
     icon: Award,
+    gradient: "from-violet-500 to-blue-500",
   },
   {
     year: "2007",
     title: "B.E in Computer Engineering",
     institution: "Mumbai University",
+    description: "Foundation in computer science fundamentals, software engineering, and systems design.",
     icon: GraduationCap,
+    gradient: "from-blue-600 to-indigo-500",
   },
 ];
 
@@ -105,36 +111,74 @@ export const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-2"
           >
-            {/* Timeline */}
-            <h4 className="text-xl font-bold text-foreground mb-6">Career Journey</h4>
-            <div className="relative pl-8">
-              {/* Vertical Line */}
-              <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
+            {/* Premium Timeline */}
+            <div className="relative rounded-2xl p-6 md:p-8 overflow-hidden" style={{ background: 'linear-gradient(135deg, hsl(222 47% 11%), hsl(222 47% 5%))' }}>
+              {/* Subtle background glow */}
+              <div className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-20 blur-3xl" style={{ background: 'hsl(217 91% 60%)' }} />
+              <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-10 blur-3xl" style={{ background: 'hsl(217 91% 60%)' }} />
 
-              <div className="space-y-6">
-                {timeline.map((item, index) => (
-                  <motion.div
-                    key={item.year}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.4 + index * 0.15 }}
-                    className="relative"
-                  >
-                    {/* Dot */}
-                    <div className="absolute -left-5 top-3 w-4 h-4 rounded-full bg-accent border-[3px] border-background shadow-[0_0_0_3px_hsl(217_91%_60%/0.2)]" />
+              <h4 className="text-xl font-bold text-white mb-8 relative z-10">Career Journey</h4>
 
-                    <div className="bg-card rounded-xl p-5 shadow-sm border border-border hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
-                      <div className="flex items-center gap-3 mb-1">
-                        <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                          <item.icon className="w-4 h-4 text-accent" />
+              <div className="relative pl-10">
+                {/* Glowing vertical line */}
+                <div className="absolute left-[13px] top-2 bottom-2 w-px" style={{ background: 'linear-gradient(to bottom, hsl(217 91% 60% / 0.6), hsl(217 91% 60% / 0.1))' }} />
+                <div className="absolute left-[12px] top-2 bottom-2 w-[3px] blur-sm" style={{ background: 'linear-gradient(to bottom, hsl(217 91% 60% / 0.4), transparent)' }} />
+
+                <div className="space-y-6">
+                  {timeline.map((item, index) => (
+                    <motion.div
+                      key={item.year}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
+                      className="relative group"
+                    >
+                      {/* Pulsing timeline dot */}
+                      <div className="absolute -left-10 top-5 z-10">
+                        <div className="w-[26px] h-[26px] rounded-full flex items-center justify-center" style={{ background: 'hsl(222 47% 11%)' }}>
+                          <div className="w-3 h-3 rounded-full pulse-glow" style={{ background: 'hsl(217 91% 60%)' }} />
                         </div>
-                        <span className="text-accent font-mono text-sm font-semibold">{item.year}</span>
                       </div>
-                      <h5 className="font-bold text-foreground text-sm mt-2">{item.title}</h5>
-                      <p className="text-muted-foreground text-xs mt-0.5">{item.institution}</p>
-                    </div>
-                  </motion.div>
-                ))}
+
+                      {/* Glass card */}
+                      <div
+                        className="relative rounded-2xl p-5 backdrop-blur-xl border transition-all duration-500 group-hover:-translate-y-1 cursor-default overflow-hidden"
+                        style={{
+                          background: 'hsl(217 33% 17% / 0.5)',
+                          borderColor: 'hsl(210 40% 98% / 0.08)',
+                          boxShadow: '0 4px 24px hsl(222 47% 5% / 0.3)',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.borderColor = 'hsl(217 91% 60% / 0.3)';
+                          e.currentTarget.style.boxShadow = '0 8px 32px hsl(217 91% 60% / 0.15)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.borderColor = 'hsl(210 40% 98% / 0.08)';
+                          e.currentTarget.style.boxShadow = '0 4px 24px hsl(222 47% 5% / 0.3)';
+                        }}
+                      >
+                        {/* Gradient border accent on hover */}
+                        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: 'linear-gradient(135deg, hsl(217 91% 60% / 0.05), transparent)' }} />
+
+                        <div className="flex items-start gap-4 relative z-10">
+                          {/* Icon with gradient */}
+                          <div
+                            className={`w-11 h-11 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center flex-shrink-0 shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                          >
+                            <item.icon className="w-5 h-5 text-white" />
+                          </div>
+
+                          <div className="flex-1 min-w-0">
+                            <span className="font-mono text-sm font-bold" style={{ color: 'hsl(217 91% 60%)' }}>{item.year}</span>
+                            <h5 className="font-bold text-white text-sm mt-1 leading-snug">{item.title}</h5>
+                            <p className="text-xs mt-0.5" style={{ color: 'hsl(215 20% 65%)' }}>{item.institution}</p>
+                            <p className="text-xs mt-2 leading-relaxed" style={{ color: 'hsl(215 16% 47%)' }}>{item.description}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
 
