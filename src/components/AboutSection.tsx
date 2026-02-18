@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Award, Users, Wrench, BookOpen, Plane, Brain } from "lucide-react";
+import { GraduationCap, Award, Brain } from "lucide-react";
 
 const stats = [
   { number: "10+", label: "Years Experience" },
@@ -37,12 +37,6 @@ const timeline = [
   },
 ];
 
-const beyondData = [
-  { icon: Users, label: "Mentoring Students" },
-  { icon: Wrench, label: "Exploring AI Tools" },
-  { icon: BookOpen, label: "Teaching" },
-  { icon: Plane, label: "Travel" },
-];
 
 export const AboutSection = () => {
   const ref = useRef(null);
@@ -162,28 +156,7 @@ export const AboutSection = () => {
               </div>
             </div>
 
-            {/* Beyond Data */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.8 }}
-              className="mt-10"
-            >
-              <h4 className="text-xl font-bold text-foreground mb-4">Beyond Data</h4>
-              <div className="grid grid-cols-2 gap-3">
-                {beyondData.map((item) => (
-                  <div
-                    key={item.label}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border"
-                  >
-                    <div className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <item.icon className="w-4 h-4 text-accent" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+
           </motion.div>
         </div>
       </div>
