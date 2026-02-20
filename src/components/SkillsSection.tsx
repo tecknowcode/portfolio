@@ -35,7 +35,7 @@ const skillGroups = [
   },
 ];
 
-const SkillRow = ({ group, delay }: { group: typeof skillGroups[0]; delay: number }) => {
+const SkillGroup = ({ group, delay }: { group: typeof skillGroups[0]; delay: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const Icon = group.icon;
@@ -43,23 +43,23 @@ const SkillRow = ({ group, delay }: { group: typeof skillGroups[0]; delay: numbe
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay }}
-      className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6"
+      transition={{ duration: 0.5, delay }}
+      className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:shadow-lg"
+      style={{ boxShadow: "0 2px 12px rgba(15, 23, 42, 0.06)" }}
     >
-      <div className="flex items-center gap-3 sm:min-w-[220px] flex-shrink-0">
-        <div className="w-10 h-10 rounded-[10px] bg-accent/10 flex items-center justify-center flex-shrink-0">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
           <Icon className="w-5 h-5 text-accent" />
         </div>
-        <h4 className="text-base font-semibold text-foreground whitespace-nowrap">{group.title}</h4>
+        <h4 className="text-base font-semibold text-foreground">{group.title}</h4>
       </div>
       <div className="flex flex-wrap gap-2">
         {group.skills.map((skill) => (
           <span
             key={skill}
-            className="px-3.5 py-1.5 text-[13px] font-medium rounded-full bg-card text-muted-foreground border border-border transition-all duration-200 hover:border-accent hover:text-accent cursor-default"
-            style={{ boxShadow: "none" }}
+            className="px-3 py-1.5 text-sm font-medium rounded-full bg-muted text-muted-foreground border border-border transition-all duration-300 hover:bg-accent hover:text-white hover:border-accent hover:shadow-md cursor-default"
           >
             {skill}
           </span>
@@ -74,16 +74,8 @@ export const SkillsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section
-      id="skills"
-      className="py-24 md:py-32 bg-muted/30 relative overflow-hidden"
-    >
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "linear-gradient(180deg, rgba(59,130,246,0.04) 0%, rgba(59,130,246,0) 100%)",
-        }}
-      />
+    <section id="skills" className="py-24 md:py-32 bg-muted/30 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,hsl(217_91%_60%/0.04),transparent_60%)]" />
 
       <div className="section-container relative z-10" ref={ref}>
         <motion.div
@@ -101,14 +93,9 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-col">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillGroups.map((group, i) => (
-            <div key={group.title}>
-              <SkillRow group={group} delay={0.08 * i} />
-              {i < skillGroups.length - 1 && (
-                <div className="h-px bg-border my-7" />
-              )}
-            </div>
+            <SkillGroup key={group.title} group={group} delay={0.1 * i} />
           ))}
         </div>
       </div>
