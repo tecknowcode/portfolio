@@ -144,8 +144,13 @@ export const HeroSection = () => {
               />
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -inset-2 border-2 border-dashed border-secondary/30 rounded-full"
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                className="absolute -inset-2 rounded-full"
+                style={{
+                  background: "conic-gradient(from 0deg, hsl(var(--secondary)), hsl(var(--accent)), hsl(var(--secondary)), transparent)",
+                  WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
+                  mask: "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
+                }}
               />
             </motion.div>
           </motion.div>
