@@ -130,7 +130,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, duration: 0.6, type: "spring" }}
-            className="mt-[80px] mb-12"
+            className="mb-12"
           >
             {/* Subtle radial glow behind image */}
             <div
