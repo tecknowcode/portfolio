@@ -130,17 +130,17 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, duration: 0.6, type: "spring" }}
-            className="mb-6"
+            className="mb-2"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="relative w-32 h-32 mx-auto"
+              className="relative w-44 h-44 mx-auto"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent rounded-full blur-lg opacity-50" />
               <img
                 src={profileAvatar}
                 alt="Siddhesh Masurkar"
-                className="relative w-32 h-32 rounded-full object-cover border-4 border-card shadow-2xl"
+                className="relative w-44 h-44 rounded-full object-cover border-4 border-card shadow-2xl"
               />
               <motion.div
                 animate={{ rotate: 360 }}
