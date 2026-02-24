@@ -130,43 +130,70 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, duration: 0.6, type: "spring" }}
-            className="mb-2"
+            className="mt-[80px] mb-12"
           >
+            {/* Subtle radial glow behind image */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full pointer-events-none"
+              style={{
+                background: "radial-gradient(circle at center, rgba(59,130,246,0.10) 0%, rgba(59,130,246,0.00) 70%)",
+              }}
+            />
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="relative w-44 h-44 mx-auto"
+              whileHover={{ scale: 1.03 }}
+              className="relative w-[140px] h-[140px] md:w-[192px] md:h-[192px] mx-auto flex items-center justify-center"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent rounded-full blur-lg opacity-50" />
+              {/* Outer ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: "conic-gradient(from 0deg, #3B82F6, #60A5FA, #3B82F6, transparent)",
+                  WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px))",
+                  mask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px))",
+                }}
+              />
+              {/* Secondary subtle ring */}
+              <div
+                className="absolute inset-[3px] rounded-full"
+                style={{
+                  border: "2px solid rgba(59,130,246,0.25)",
+                }}
+              />
+              {/* Image with padding */}
               <img
                 src={profileAvatar}
                 alt="Siddhesh Masurkar"
-                className="relative w-44 h-44 rounded-full object-cover border-4 border-card shadow-2xl"
-              />
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                className="absolute -inset-2 rounded-full"
+                className="relative w-[116px] h-[116px] md:w-[160px] md:h-[160px] rounded-full object-cover"
                 style={{
-                  background: "conic-gradient(from 0deg, hsl(var(--secondary)), hsl(var(--accent)), hsl(var(--secondary)), transparent)",
-                  WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
-                  mask: "radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px))",
+                  boxShadow: "0 10px 30px rgba(2,6,23,0.12)",
                 }}
               />
             </motion.div>
           </motion.div>
 
-          {/* Greeting */}
+          {/* Available Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6"
+            className="mb-8"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+            <span
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-medium"
+              style={{
+                background: "hsl(var(--card))",
+                border: "1px solid hsl(var(--border))",
+                color: "hsl(var(--muted-foreground))",
+              }}
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              </span>
+              Available for opportunities
             </span>
-            <span className="text-sm font-medium text-secondary">Available for opportunities</span>
           </motion.div>
 
           {/* Name */}
