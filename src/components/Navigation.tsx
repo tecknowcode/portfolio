@@ -4,12 +4,11 @@ import { Menu, X, Linkedin, Github, Mail, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Experience", href: "#experience" },
-  { name: "Certifications", href: "#certifications" },
-  { name: "Contact", href: "#contact" },
+  { name: "About", href: "#about", highlight: false },
+  { name: "Skills", href: "#skills", highlight: false },
+  { name: "Experience", href: "#experience", highlight: false },
+  { name: "Certifications", href: "#certifications", highlight: true },
+  { name: "Projects", href: "#projects", highlight: true },
 ];
 
 export const Navigation = () => {
@@ -66,7 +65,7 @@ export const Navigation = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="nav-link text-sm font-medium"
+                  className={`text-sm font-medium transition-colors ${link.highlight ? "text-secondary font-semibold border-b-2 border-secondary pb-0.5" : "nav-link"}`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -124,7 +123,7 @@ export const Navigation = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className="text-2xl font-semibold hover:text-secondary transition-colors"
+                  className={`text-2xl font-semibold transition-colors ${link.highlight ? "text-secondary" : "hover:text-secondary"}`}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Linkedin, Github, Twitter, MapPin, Clock, Send, CheckCircle, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github, Twitter, MapPin, Clock, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -124,22 +124,6 @@ export const ContactSection = () => {
               </div>
             </div>
 
-            {/* CTA Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.5 }}
-              className="mt-6 p-6 rounded-2xl bg-gradient-to-br from-secondary to-accent text-white"
-            >
-              <h4 className="text-lg font-bold mb-2">Looking for a Data Scientist?</h4>
-              <p className="text-white/80 text-sm mb-4">
-                Let's discuss how I can help transform your data into actionable insights.
-              </p>
-              <Button variant="secondary" className="bg-white text-secondary hover:bg-white/90 gap-2">
-                Schedule a Call
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </motion.div>
           </motion.div>
 
           {/* Right - Contact Form */}
