@@ -1,6 +1,6 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Briefcase, Award, Calendar, MapPin } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 const experiences = [
   {
@@ -8,22 +8,23 @@ const experiences = [
     title: "Freelance Data Scientist",
     company: "Self-Employed",
     location: "Mumbai, India",
-    period: "2023 - Present",
+    period: "2023 — Present",
     type: "current",
     description: "Delivering end-to-end ML solutions for startups and enterprises. Specialized in predictive analytics, NLP, and computer vision projects.",
     achievements: [
       "Delivered 15+ successful projects for clients globally",
       "Achieved 90%+ client satisfaction rating",
       "Built ML models with average 88% accuracy",
+      "Specialized in predictive analytics and NLP pipelines",
     ],
-    tech: ["Python", "TensorFlow", "AWS", "Docker"],
+    tech: ["Python", "TensorFlow", "AWS", "Docker", "Scikit-learn", "NLP"],
   },
   {
     id: 2,
     title: "Data Science Mentor",
     company: "Online Platforms",
     location: "Remote",
-    period: "2022 - Present",
+    period: "2022 — Present",
     type: "current",
     description: "Mentoring aspiring data scientists and helping them transition into tech careers through personalized guidance.",
     achievements: [
@@ -53,14 +54,13 @@ const experiences = [
 export const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [expanded, setExpanded] = useState<number>(1);
 
   return (
-    <section id="experience" className="py-24 md:py-32 bg-muted/30 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.05),transparent_50%)]" />
+    <section id="experience" className="py-24 md:py-32 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.04),transparent_50%)]" />
 
       <div className="section-container relative z-10" ref={ref}>
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -76,78 +76,91 @@ export const ExperienceSection = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-6">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.id}
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className={`glass-card rounded-2xl p-6 md:p-8 relative overflow-hidden ${
-                exp.type === "current" ? "border-l-4 border-l-accent" : ""
-              }`}
-            >
-              {exp.type === "current" && (
-                <div className="absolute top-4 right-4">
-                  <span className="flex items-center gap-1 text-xs font-medium text-accent bg-accent/10 px-2 py-1 rounded-full">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-                    </span>
-                    Current
-                  </span>
-                </div>
-              )}
+        <div className="max-w-3xl mx-auto">
+          {/* Timeline */}
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-[18px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-secondary via-accent to-secondary/20" />
 
-              <div className="flex flex-col md:flex-row md:items-start gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center shrink-0">
-                  <Briefcase className="w-6 h-6 text-secondary" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold">{exp.title}</h3>
-                  <p className="text-secondary font-medium">{exp.company}</p>
-                  <div className="flex flex-wrap gap-4 mt-2 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {exp.period}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
-                      {exp.location}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <p className="text-muted-foreground mb-4">{exp.description}</p>
-
-              <div className="mb-4">
-                <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                  <Award className="w-4 h-4 text-accent" />
-                  Key Achievements
-                </h4>
-                <ul className="space-y-1">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <span className="text-accent mt-1">•</span>
-                      {achievement}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {exp.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-xs px-2 py-1 bg-secondary/10 text-secondary rounded-md"
+            <div className="space-y-0">
+              {experiences.map((exp, index) => {
+                const isOpen = expanded === exp.id;
+                return (
+                  <motion.div
+                    key={exp.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.15 }}
+                    className="relative pl-12 pb-10"
                   >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                    {/* Timeline dot */}
+                    <div className={`absolute left-0 top-1 w-9 h-9 rounded-full border-2 flex items-center justify-center z-10 transition-colors duration-300 ${
+                      exp.type === "current"
+                        ? "border-secondary bg-secondary/10"
+                        : "border-accent/50 bg-background"
+                    }`}>
+                      <div className={`w-3 h-3 rounded-full ${exp.type === "current" ? "bg-secondary" : "bg-accent/50"}`} />
+                    </div>
+
+                    {/* Header row */}
+                    <button
+                      onClick={() => setExpanded(isOpen ? -1 : exp.id)}
+                      className="w-full text-left group"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-lg font-bold text-foreground group-hover:text-secondary transition-colors">
+                              {exp.company}
+                            </h3>
+                            <ChevronDown
+                              className={`w-4 h-4 text-muted-foreground transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                            />
+                          </div>
+                          <p className="text-secondary text-sm font-medium mt-0.5">{exp.title}</p>
+                        </div>
+                        <span className="text-sm text-muted-foreground whitespace-nowrap mt-0.5">{exp.period}</span>
+                      </div>
+                    </button>
+
+                    {/* Expandable content */}
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-4 rounded-xl border border-border bg-card p-5">
+                            <ul className="space-y-2 mb-4">
+                              {exp.achievements.map((a, i) => (
+                                <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                                  <span className="mt-[6px] w-1.5 h-1.5 rounded-full bg-secondary shrink-0" />
+                                  {a}
+                                </li>
+                              ))}
+                            </ul>
+                            <div className="flex flex-wrap gap-2 pt-3 border-t border-border">
+                              {exp.tech.map((tech) => (
+                                <span
+                                  key={tech}
+                                  className="text-xs px-3 py-1 rounded-full border border-border text-muted-foreground hover:border-secondary hover:text-secondary transition-colors"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
