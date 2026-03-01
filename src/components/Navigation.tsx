@@ -65,7 +65,7 @@ export const Navigation = () => {
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors ${link.highlight ? "text-secondary font-semibold border-b-2 border-secondary pb-0.5" : "nav-link"}`}
+                  className={`text-sm font-medium transition-colors ${link.highlight ? "px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90" : "nav-link"}`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
