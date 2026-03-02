@@ -240,25 +240,55 @@ export const CertificationsSection = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Stats */}
+          {/* Stats Cards */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex justify-center gap-12 mt-16"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16 max-w-4xl mx-auto"
           >
-            <div className="text-center">
-              <div className="text-3xl font-bold gradient-text">10+</div>
-              <div className="text-sm text-muted-foreground">Certifications</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold gradient-text">5+</div>
-              <div className="text-sm text-muted-foreground">FDP / Workshops</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold gradient-text">50+</div>
-              <div className="text-sm text-muted-foreground">Mentees</div>
-            </div>
+            {[
+              { number: "10+", label: "Certifications" },
+              { number: "5+", label: "FDP / Workshops" },
+              { number: "50+", label: "Mentees Guided" },
+              { number: "100+", label: "Training Sessions" },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 16 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.55 + i * 0.08 }}
+                className="group flex flex-col items-center justify-center text-center rounded-2xl px-6 py-8 transition-all duration-300 cursor-default"
+                style={{
+                  background: "hsl(var(--card))",
+                  border: "1px solid hsl(var(--border))",
+                  boxShadow: "0 2px 12px hsl(var(--foreground) / 0.05)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 28px hsl(var(--accent) / 0.14)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "hsl(var(--accent) / 0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px hsl(var(--foreground) / 0.05)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "hsl(var(--border))";
+                }}
+              >
+                <span
+                  className="text-4xl font-extrabold mb-2 leading-none"
+                  style={{ color: "hsl(var(--accent))" }}
+                >
+                  {stat.number}
+                </span>
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: "hsl(var(--muted-foreground))" }}
+                >
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
