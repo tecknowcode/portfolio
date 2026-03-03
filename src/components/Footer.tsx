@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { Heart, ArrowUp, Linkedin, Github, Twitter, Mail } from "lucide-react";
+import { Heart, ArrowUp, Linkedin, Github, Mail } from "lucide-react";
 
 const socialLinks = [
   { name: "LinkedIn", icon: Linkedin, href: "#" },
   { name: "GitHub", icon: Github, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
   { name: "Email", icon: Mail, href: "mailto:siddhesh@example.com" },
 ];
 
@@ -35,11 +34,12 @@ export const Footer = () => {
           <div>
             <motion.a
               href="#"
-              className="inline-block text-2xl font-bold mb-4 bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent font-display"
+              className="inline-block text-2xl font-bold mb-4 text-primary-foreground/90 font-display"
               whileHover={{ scale: 1.05 }}
             >
               Siddhesh Masurkar
             </motion.a>
+
             <p className="text-primary-foreground/60 text-sm mb-6 max-w-xs">
               Data Scientist passionate about transforming complex data into strategic insights 
               through machine learning and analytics.
@@ -84,7 +84,6 @@ export const Footer = () => {
             <div className="space-y-3 text-sm text-primary-foreground/60">
               <p>Mumbai, India 🇮🇳</p>
               <p>siddhesh@example.com</p>
-              <p>Available for freelance projects</p>
             </div>
             
             {/* Scroll to Top */}
@@ -105,7 +104,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} Siddhesh Masurkar. All rights reserved.
           </p>
           <p className="flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> in Mumbai
+            Made with <Heart className="w-4 h-4 fill-current text-primary-foreground/60" /> in Mumbai
           </p>
         </div>
       </div>
