@@ -77,10 +77,27 @@ export const Navigation = () => {
             </div>
 
             {/* CTA Button */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden md:flex items-center gap-2">
+              {[
+                { href: "https://github.com", icon: Github, label: "GitHub" },
+                { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
+              ].map(({ href, icon: Icon, label }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-accent"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={label}
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              ))}
               <motion.button
                 onClick={toggleDark}
-                className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground"
+                className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-accent"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Toggle dark mode"
