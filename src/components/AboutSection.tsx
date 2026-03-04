@@ -19,8 +19,6 @@ const careerJourney = [
     current: true,
     bullets: [
       "Architecting end-to-end ML pipelines for enterprise clients, reducing model deployment time by 40%.",
-      "Delivering NLP and computer vision solutions with measurable ROI for fintech and healthcare domains.",
-      "Leading AI strategy workshops and mentoring junior data scientists.",
     ],
   },
   {
@@ -30,9 +28,7 @@ const careerJourney = [
     icon: Brain,
     current: false,
     bullets: [
-      "Mentored 100+ students through structured ML curriculum, achieving 90%+ placement rate.",
-      "Designed project-based modules on Python, Pandas, scikit-learn, and deep learning.",
-      "Conducted live doubt-clearing sessions and mock technical interviews.",
+      "Mentored 100+ students through a structured ML curriculum, achieving a 90%+ placement rate.",
     ],
   },
   {
@@ -42,9 +38,7 @@ const careerJourney = [
     icon: Briefcase,
     current: false,
     bullets: [
-      "Built predictive models for customer churn, demand forecasting, and anomaly detection.",
-      "Deployed scalable ML services on AWS and GCP, serving millions of predictions daily.",
-      "Collaborated cross-functionally to translate business problems into data-driven solutions.",
+      "Built and deployed scalable ML services on AWS and GCP, serving millions of predictions daily.",
     ],
   },
   {
@@ -54,9 +48,7 @@ const careerJourney = [
     icon: GraduationCap,
     current: false,
     bullets: [
-      "Taught core CS subjects: Data Structures, Algorithms, DBMS, and Software Engineering.",
-      "Guided 50+ final-year projects, several published in IEEE conferences.",
-      "Foundation phase that shaped a deep understanding of computation and systems thinking.",
+      "Taught core CS subjects and guided 50+ final-year projects, several published in IEEE conferences.",
     ],
   },
 ];
