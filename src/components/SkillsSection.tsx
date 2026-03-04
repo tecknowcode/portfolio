@@ -1,109 +1,140 @@
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Star, Brain, BarChart2, Layers, Cloud, Database, Eye, Sigma, Binary, GitBranch, Container, Workflow, PieChart, LineChart, BookOpen, FlaskConical, Network, ScanSearch, Cpu, Table2, HardDrive, BarChart, Microscope, Calculator, TrendingUp, Globe, Server } from "lucide-react";
 
 type Skill = {
   label: string;
   icon: React.ElementType;
-  category: string;
   featured?: boolean;
 };
 
-const skills: Skill[] = [
-  // Machine Learning & AI
-  { label: "Python", icon: Brain, category: "Machine Learning & AI", featured: true },
-  { label: "Regression", icon: TrendingUp, category: "Machine Learning & AI" },
-  { label: "Classification", icon: Binary, category: "Machine Learning & AI" },
-  { label: "Clustering", icon: Network, category: "Machine Learning & AI" },
-  { label: "PCA", icon: ScanSearch, category: "Machine Learning & AI" },
-  { label: "NLP", icon: BookOpen, category: "Machine Learning & AI", featured: true },
-  { label: "Neural Networks", icon: Cpu, category: "Machine Learning & AI", featured: true },
-  { label: "Transfer Learning", icon: Workflow, category: "Machine Learning & AI" },
-  { label: "Ensemble Methods", icon: Layers, category: "Machine Learning & AI" },
-  { label: "LIME", icon: Microscope, category: "Machine Learning & AI" },
+type Category = {
+  title: string;
+  icon: React.ElementType;
+  skills: Skill[];
+};
 
-  // Frameworks
-  { label: "TensorFlow", icon: FlaskConical, category: "Frameworks", featured: true },
-  { label: "PyTorch", icon: FlaskConical, category: "Frameworks", featured: true },
-  { label: "Scikit-Learn", icon: Layers, category: "Frameworks", featured: true },
-  { label: "Pandas", icon: Table2, category: "Frameworks" },
-  { label: "NumPy", icon: Calculator, category: "Frameworks" },
-  { label: "PySpark", icon: Cpu, category: "Frameworks" },
-  { label: "NLTK", icon: BookOpen, category: "Frameworks" },
-  { label: "Matplotlib", icon: LineChart, category: "Frameworks" },
-  { label: "Seaborn", icon: BarChart2, category: "Frameworks" },
-
-  // Cloud & Deployment
-  { label: "AWS", icon: Cloud, category: "Cloud & Deployment", featured: true },
-  { label: "Docker", icon: Container, category: "Cloud & Deployment", featured: true },
-  { label: "MLflow", icon: Workflow, category: "Cloud & Deployment" },
-  { label: "DVC", icon: GitBranch, category: "Cloud & Deployment" },
-  { label: "CI/CD", icon: GitBranch, category: "Cloud & Deployment" },
-  { label: "Git", icon: GitBranch, category: "Cloud & Deployment" },
-  { label: "GitHub", icon: Globe, category: "Cloud & Deployment" },
-  { label: "Flask", icon: Server, category: "Cloud & Deployment" },
-  { label: "Streamlit", icon: BarChart, category: "Cloud & Deployment" },
-
-  // Databases
-  { label: "PostgreSQL", icon: Database, category: "Databases" },
-  { label: "MySQL", icon: Database, category: "Databases" },
-  { label: "MongoDB", icon: HardDrive, category: "Databases" },
-  { label: "BigQuery", icon: Database, category: "Databases" },
-  { label: "RDBMS", icon: Table2, category: "Databases" },
-
-  // Visualization
-  { label: "Tableau", icon: BarChart2, category: "Visualization", featured: true },
-  { label: "Power BI", icon: PieChart, category: "Visualization", featured: true },
-  { label: "Looker", icon: Eye, category: "Visualization" },
-  { label: "Excel", icon: Table2, category: "Visualization" },
-  { label: "GenAI Tools", icon: Cpu, category: "Visualization" },
-
-  // Mathematics
-  { label: "Statistics", icon: BarChart2, category: "Mathematics" },
-  { label: "Probability", icon: Sigma, category: "Mathematics" },
-  { label: "Hypothesis Testing", icon: Microscope, category: "Mathematics" },
-  { label: "Calculus", icon: Calculator, category: "Mathematics" },
-  { label: "Time Series", icon: TrendingUp, category: "Mathematics" },
+const categories: Category[] = [
+  {
+    title: "Featured",
+    icon: Star,
+    skills: [
+      { label: "Python", icon: Brain, featured: true },
+      { label: "NLP", icon: BookOpen, featured: true },
+      { label: "Neural Networks", icon: Cpu, featured: true },
+      { label: "TensorFlow", icon: FlaskConical, featured: true },
+      { label: "PyTorch", icon: FlaskConical, featured: true },
+      { label: "Scikit-Learn", icon: Layers, featured: true },
+      { label: "AWS", icon: Cloud, featured: true },
+      { label: "Docker", icon: Container, featured: true },
+      { label: "Tableau", icon: BarChart2, featured: true },
+      { label: "Power BI", icon: PieChart, featured: true },
+    ],
+  },
+  {
+    title: "Machine Learning & AI",
+    icon: Brain,
+    skills: [
+      { label: "Python", icon: Brain },
+      { label: "Regression", icon: TrendingUp },
+      { label: "Classification", icon: Binary },
+      { label: "Clustering", icon: Network },
+      { label: "PCA", icon: ScanSearch },
+      { label: "NLP", icon: BookOpen },
+      { label: "Neural Networks", icon: Cpu },
+      { label: "Transfer Learning", icon: Workflow },
+      { label: "Ensemble Methods", icon: Layers },
+      { label: "LIME", icon: Microscope },
+    ],
+  },
+  {
+    title: "Frameworks",
+    icon: Layers,
+    skills: [
+      { label: "TensorFlow", icon: FlaskConical },
+      { label: "PyTorch", icon: FlaskConical },
+      { label: "Scikit-Learn", icon: Layers },
+      { label: "Pandas", icon: Table2 },
+      { label: "NumPy", icon: Calculator },
+      { label: "PySpark", icon: Cpu },
+      { label: "NLTK", icon: BookOpen },
+      { label: "Matplotlib", icon: LineChart },
+      { label: "Seaborn", icon: BarChart2 },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: Cloud,
+    skills: [
+      { label: "AWS", icon: Cloud },
+      { label: "Docker", icon: Container },
+      { label: "MLflow", icon: Workflow },
+      { label: "DVC", icon: GitBranch },
+      { label: "CI/CD", icon: GitBranch },
+      { label: "Git", icon: GitBranch },
+      { label: "GitHub", icon: Globe },
+      { label: "Flask", icon: Server },
+      { label: "Streamlit", icon: BarChart },
+    ],
+  },
+  {
+    title: "Databases",
+    icon: Database,
+    skills: [
+      { label: "PostgreSQL", icon: Database },
+      { label: "MySQL", icon: Database },
+      { label: "MongoDB", icon: HardDrive },
+      { label: "BigQuery", icon: Database },
+      { label: "RDBMS", icon: Table2 },
+    ],
+  },
+  {
+    title: "Visualization",
+    icon: Eye,
+    skills: [
+      { label: "Tableau", icon: BarChart2 },
+      { label: "Power BI", icon: PieChart },
+      { label: "Looker", icon: Eye },
+      { label: "Excel", icon: Table2 },
+      { label: "GenAI Tools", icon: Cpu },
+    ],
+  },
+  {
+    title: "Mathematics",
+    icon: Sigma,
+    skills: [
+      { label: "Statistics", icon: BarChart2 },
+      { label: "Probability", icon: Sigma },
+      { label: "Hypothesis Testing", icon: Microscope },
+      { label: "Calculus", icon: Calculator },
+      { label: "Time Series", icon: TrendingUp },
+    ],
+  },
 ];
 
-const filters = [
-  { label: "Featured", value: "Featured", icon: Star },
-  { label: "Machine Learning & AI", value: "Machine Learning & AI", icon: Brain },
-  { label: "Frameworks", value: "Frameworks", icon: Layers },
-  { label: "Cloud & Deployment", value: "Cloud & Deployment", icon: Cloud },
-  { label: "Databases", value: "Databases", icon: Database },
-  { label: "Visualization", value: "Visualization", icon: Eye },
-  { label: "Mathematics", value: "Mathematics", icon: Sigma },
-  { label: "All", value: "All" },
-];
-
-const SkillChip = ({ skill, index }: { skill: Skill; index: number }) => {
+const SkillTag = ({ skill, index, featured }: { skill: Skill; index: number; featured?: boolean }) => {
   const Icon = skill.icon;
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.92 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.25, delay: index * 0.02 }}
-      className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full border cursor-default select-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, delay: index * 0.015 }}
+      className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border cursor-default select-none transition-all duration-200"
       style={{
-        background: "hsl(var(--card))",
-        borderColor: "hsl(var(--border))",
+        background: featured ? "hsl(var(--accent) / 0.07)" : "hsl(var(--card))",
+        borderColor: featured ? "hsl(var(--accent) / 0.25)" : "hsl(var(--border))",
       }}
       whileHover={{
-        borderColor: "hsl(var(--accent) / 0.35)",
-        backgroundColor: "hsl(var(--accent) / 0.04)",
+        y: -2,
+        backgroundColor: "hsl(var(--accent) / 0.08)",
+        borderColor: "hsl(var(--accent) / 0.3)",
       }}
     >
-      <span
-        className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300"
-        style={{ background: "hsl(var(--accent) / 0.1)" }}
-      >
-        <Icon
-          className="w-3.5 h-3.5 transition-colors duration-300"
-          style={{ color: "hsl(var(--accent))" }}
-          strokeWidth={1.75}
-        />
-      </span>
+      <Icon
+        className="w-3.5 h-3.5 flex-shrink-0 transition-colors duration-200"
+        style={{ color: "hsl(var(--accent))" }}
+        strokeWidth={1.75}
+      />
       <span className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>
         {skill.label}
       </span>
@@ -111,17 +142,55 @@ const SkillChip = ({ skill, index }: { skill: Skill; index: number }) => {
   );
 };
 
+const CategoryBlock = ({ category, catIndex }: { category: Category; catIndex: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const CatIcon = category.icon;
+  const isFeatured = category.title === "Featured";
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: catIndex * 0.07 }}
+      className="mb-10 last:mb-0"
+    >
+      {/* Category Header */}
+      <div className="flex items-center gap-2.5 mb-4">
+        <span
+          className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0"
+          style={{ background: "hsl(var(--accent) / 0.1)" }}
+        >
+          <CatIcon className="w-3.5 h-3.5" style={{ color: "hsl(var(--accent))" }} strokeWidth={2} />
+        </span>
+        <h3 className="text-base font-semibold" style={{ color: "hsl(var(--foreground))" }}>
+          {category.title}
+        </h3>
+        <span
+          className="text-xs font-medium px-2 py-0.5 rounded-full ml-1"
+          style={{ background: "hsl(var(--muted))", color: "hsl(var(--muted-foreground))" }}
+        >
+          {category.skills.length}
+        </span>
+        <div className="flex-1 h-px ml-1" style={{ background: "hsl(var(--border))" }} />
+      </div>
+
+      {/* Skills Wrap */}
+      <div className="flex flex-wrap gap-2">
+        {category.skills.map((skill, i) => (
+          <SkillTag key={skill.label} skill={skill} index={i} featured={isFeatured} />
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
 export const SkillsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeFilter, setActiveFilter] = useState("All");
 
-  const filteredSkills =
-    activeFilter === "All"
-      ? skills
-      : activeFilter === "Featured"
-      ? skills.filter((s) => s.featured)
-      : skills.filter((s) => s.category === activeFilter);
+  const totalSkills = new Set(categories.flatMap((c) => c.skills.map((s) => s.label))).size;
 
   return (
     <section id="skills" className="py-24 md:py-32 relative overflow-hidden" style={{ background: "hsl(var(--muted) / 0.3)" }}>
@@ -136,7 +205,7 @@ export const SkillsSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          className="text-center mb-14"
         >
           <span className="font-semibold text-sm uppercase tracking-widest" style={{ color: "hsl(var(--accent))" }}>
             Skills & Expertise
@@ -145,7 +214,7 @@ export const SkillsSection = () => {
             Technical{" "}
             <span
               style={{
-                background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-hover, var(--accent))))",
+                background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.7))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -159,91 +228,25 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        {/* Filter Chips */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="flex flex-wrap justify-center gap-2.5 mb-12"
+        {/* Category Blocks */}
+        <div
+          className="rounded-2xl border p-6 md:p-8"
+          style={{ background: "hsl(var(--card))", borderColor: "hsl(var(--border))" }}
         >
-          {filters.map((filter) => {
-            const isActive = activeFilter === filter.value;
-            const FilterIcon = filter.icon;
-            return (
-              <button
-                key={filter.value}
-                onClick={() => setActiveFilter(filter.value)}
-                className="relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-300 cursor-pointer select-none"
-                style={
-                  isActive
-                    ? {
-                        background: "hsl(var(--accent))",
-                        color: "hsl(var(--accent-foreground))",
-                        borderColor: "transparent",
-                        boxShadow: "0 4px 16px hsl(var(--accent) / 0.25)",
-                        transform: "scale(1.03)",
-                      }
-                    : {
-                        background: "hsl(var(--card))",
-                        color: "hsl(var(--muted-foreground))",
-                        borderColor: "hsl(var(--border))",
-                      }
-                }
-                onMouseEnter={(e) => {
-                  if (!isActive) {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = "hsl(var(--accent) / 0.4)";
-                    (e.currentTarget as HTMLButtonElement).style.color = "hsl(var(--foreground))";
-                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)";
-                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 2px 8px hsl(var(--accent) / 0.1)";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive) {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = "hsl(var(--border))";
-                    (e.currentTarget as HTMLButtonElement).style.color = "hsl(var(--muted-foreground))";
-                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)";
-                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
-                  }
-                }}
-              >
-                {FilterIcon && (
-                  <FilterIcon
-                    className="w-3.5 h-3.5 flex-shrink-0"
-                    strokeWidth={2}
-                    fill={isActive && filter.value === "Featured" ? "currentColor" : "none"}
-                  />
-                )}
-                {filter.label}
-              </button>
-            );
-          })}
-        </motion.div>
-
-        {/* Skills Chips Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeFilter}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.25 }}
-            className="flex flex-wrap justify-center gap-3"
-          >
-            {filteredSkills.map((skill, i) => (
-              <SkillChip key={`${activeFilter}-${skill.label}`} skill={skill} index={i} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+          {categories.map((cat, i) => (
+            <CategoryBlock key={cat.title} category={cat} catIndex={i} />
+          ))}
+        </div>
 
         {/* Count Badge */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center mt-10"
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="text-center mt-8"
         >
           <span className="text-xs font-medium px-3 py-1 rounded-full" style={{ color: "hsl(var(--muted-foreground))", background: "hsl(var(--muted))" }}>
-            {filteredSkills.length} skill{filteredSkills.length !== 1 ? "s" : ""} {activeFilter !== "All" ? `in ${activeFilter}` : "total"}
+            {totalSkills} unique skills across {categories.length} categories
           </span>
         </motion.div>
       </div>
