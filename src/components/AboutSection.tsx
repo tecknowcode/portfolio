@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, Award, Brain } from "lucide-react";
+import { Briefcase, GraduationCap, BookOpen, TrendingUp, Brain } from "lucide-react";
 
 const stats = [
   { number: "10+", label: "Years Experience" },
@@ -10,30 +10,54 @@ const stats = [
   { number: "5+", label: "Certifications" },
 ];
 
-const timeline = [
+const careerJourney = [
   {
-    year: "2025",
-    title: "Masters in Data Science & ML",
-    institution: "Scaler Academy",
-    description: "Advanced specialization in machine learning algorithms, deep learning, and scalable AI systems.",
+    period: "2023 – Present",
+    role: "Senior Data Scientist",
+    org: "Freelance / Consulting",
+    icon: TrendingUp,
+    current: true,
+    bullets: [
+      "Architecting end-to-end ML pipelines for enterprise clients, reducing model deployment time by 40%.",
+      "Delivering NLP and computer vision solutions with measurable ROI for fintech and healthcare domains.",
+      "Leading AI strategy workshops and mentoring junior data scientists.",
+    ],
+  },
+  {
+    period: "2022 – 2023",
+    role: "Data Science Mentor",
+    org: "Scaler Academy",
     icon: Brain,
-    gradient: "from-blue-500 to-cyan-400",
+    current: false,
+    bullets: [
+      "Mentored 100+ students through structured ML curriculum, achieving 90%+ placement rate.",
+      "Designed project-based modules on Python, Pandas, scikit-learn, and deep learning.",
+      "Conducted live doubt-clearing sessions and mock technical interviews.",
+    ],
   },
   {
-    year: "2021",
-    title: "M.E in Computer Engineering",
-    institution: "Mumbai University",
-    description: "Research-focused postgraduate degree with emphasis on intelligent computing and data systems.",
-    icon: Award,
-    gradient: "from-violet-500 to-blue-500",
+    period: "2015 – 2022",
+    role: "Machine Learning Engineer",
+    org: "Industry (Analytics & AI)",
+    icon: Briefcase,
+    current: false,
+    bullets: [
+      "Built predictive models for customer churn, demand forecasting, and anomaly detection.",
+      "Deployed scalable ML services on AWS and GCP, serving millions of predictions daily.",
+      "Collaborated cross-functionally to translate business problems into data-driven solutions.",
+    ],
   },
   {
-    year: "2007",
-    title: "B.E in Computer Engineering",
-    institution: "Mumbai University",
-    description: "Foundation in computer science fundamentals, software engineering, and systems design.",
+    period: "2007 – 2015",
+    role: "Lecturer – Computer Engineering",
+    org: "Mumbai University",
     icon: GraduationCap,
-    gradient: "from-blue-600 to-indigo-500",
+    current: false,
+    bullets: [
+      "Taught core CS subjects: Data Structures, Algorithms, DBMS, and Software Engineering.",
+      "Guided 50+ final-year projects, several published in IEEE conferences.",
+      "Foundation phase that shaped a deep understanding of computation and systems thinking.",
+    ],
   },
 ];
 
@@ -105,53 +129,62 @@ export const AboutSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-2"
           >
-            {/* Clean Corporate Timeline */}
-            <div className="bg-card rounded-[18px] p-7 border border-border" style={{ boxShadow: '0 6px 20px rgba(0,0,0,0.06)' }}>
+            {/* Career Journey Timeline */}
+            <div className="bg-card rounded-[18px] p-7 border border-border shadow-sm">
               <span className="text-accent font-medium text-xs uppercase tracking-widest">Career Path</span>
-              <h4 className="text-xl font-bold text-foreground mt-1 mb-7">Career Journey</h4>
+              <h4 className="text-xl font-bold text-foreground mt-1 mb-7">Professional Journey</h4>
 
-              <div className="relative pl-8">
-                {/* Vertical timeline line */}
-                <div className="absolute left-[5px] top-2 bottom-2 w-0.5 bg-border" />
+              <div className="relative pl-9">
+                {/* Vertical line */}
+                <div className="absolute left-[7px] top-1 bottom-1 w-px bg-accent/20" />
 
                 <div className="space-y-6">
-                  {timeline.map((item, index) => (
-                    <motion.div
-                      key={item.year}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
-                      className="relative group"
-                    >
-                      {/* Timeline dot */}
-                      <div className="absolute -left-8 top-5 z-10 flex items-center justify-center">
-                        <div className="w-3 h-3 rounded-full bg-accent border-[3px] border-card" style={{ boxShadow: '0 0 0 3px hsl(217 91% 60% / 0.15)' }} />
-                      </div>
-
-                      {/* Card */}
-                      <div className="bg-card rounded-[14px] p-5 border border-border transition-all duration-300 group-hover:-translate-y-1 group-hover:border-blue-200 cursor-default" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-                        }}
+                  {careerJourney.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <motion.div
+                        key={item.role}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
+                        className="relative group"
                       >
-                        <div className="flex items-start gap-4">
-                          {/* Icon */}
-                          <div className="w-10 h-10 rounded-[10px] bg-accent/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
-                            <item.icon className="w-5 h-5 text-accent" />
-                          </div>
-
-                          <div className="flex-1 min-w-0">
-                            <span className="text-accent font-semibold text-sm">{item.year}</span>
-                            <h5 className="font-semibold text-foreground text-base mt-0.5 leading-snug">{item.title}</h5>
-                            <p className="text-muted-foreground text-sm mt-0.5">{item.institution}</p>
+                        {/* Timeline marker */}
+                        <div className="absolute -left-9 top-4 z-10">
+                          <div className={`w-[15px] h-[15px] rounded-full border-2 flex items-center justify-center ${item.current ? 'bg-accent border-accent' : 'bg-card border-accent/50'}`}>
+                            {item.current && <div className="w-1.5 h-1.5 rounded-full bg-card" />}
                           </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  ))}
+
+                        {/* Entry card */}
+                        <div className="bg-muted/40 rounded-[14px] p-4 border border-border transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-accent/30 group-hover:shadow-md cursor-default">
+                          {/* Header row */}
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="w-8 h-8 rounded-[8px] bg-accent/10 flex items-center justify-center flex-shrink-0">
+                              <Icon className="w-4 h-4 text-accent" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between gap-2 flex-wrap">
+                                <h5 className="font-semibold text-foreground text-sm leading-snug">{item.role}</h5>
+                                <span className="text-accent/70 text-xs font-medium shrink-0">{item.period}</span>
+                              </div>
+                              <p className="text-muted-foreground text-xs mt-0.5">{item.org}</p>
+                            </div>
+                          </div>
+
+                          {/* Bullet points */}
+                          <ul className="space-y-1.5 pl-1">
+                            {item.bullets.map((b, i) => (
+                              <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
+                                <span className="mt-1.5 w-1 h-1 rounded-full bg-accent/50 shrink-0" />
+                                {b}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
