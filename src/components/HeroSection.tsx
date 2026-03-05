@@ -162,16 +162,16 @@ export const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.7, type: "spring" }}
-            className="flex-shrink-0 flex items-center justify-center"
+          className="flex-shrink-0 flex items-center justify-center md:flex-1 md:justify-center"
           >
             {/* Glow backdrop */}
             <div
               className="relative flex items-center justify-center"
-              style={{ width: 200, height: 200 }}
+              style={{ width: 300, height: 300 }}
             >
               <div
-                className="absolute inset-0 rounded-full blur-2xl"
-                style={{ background: "hsl(var(--accent)/0.15)", transform: "scale(1.3)" }}
+                className="absolute inset-0 rounded-full blur-3xl"
+                style={{ background: "hsl(var(--accent)/0.15)", transform: "scale(1.25)" }}
               />
 
               {/* Spinning gradient ring */}
@@ -192,17 +192,15 @@ export const HeroSection = () => {
                 style={{ border: "1.5px solid hsl(var(--accent)/0.2)" }}
               />
 
-              {/* Photo */}
+              {/* Photo — 260px desktop, 190px on mobile via responsive wrapper */}
               <motion.img
-                whileHover={{ scale: 1.04 }}
+                whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.25 }}
                 src={profileAvatar}
                 alt="Siddhesh Masurkar"
-                className="relative rounded-full object-cover"
+                className="relative rounded-full object-cover w-[190px] h-[190px] md:w-[260px] md:h-[260px]"
                 style={{
-                  width: 160,
-                  height: 160,
-                  boxShadow: "0 8px 28px hsl(var(--primary)/0.18)",
+                  boxShadow: "0 12px 40px hsl(var(--primary)/0.18)",
                 }}
               />
             </div>
