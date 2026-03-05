@@ -1,62 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, ArrowDown, Sparkles, TrendingUp, Database, Brain } from "lucide-react";
+import { MapPin, ArrowDown } from "lucide-react";
 import profileAvatar from "@/assets/profile-avatar.jpg";
-const titles = ["Data Scientist", "ML Engineer", "Problem Solver", "Analytics Expert"];
 
-const FloatingBadge = ({ children, delay, className }: { children: React.ReactNode; delay: number; className?: string }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay, duration: 0.5, type: "spring" }}
-    className={`absolute ${className}`}
-  >
-    <motion.div
-      animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
-      className="skill-badge flex items-center gap-2 shadow-lg"
-    >
-      {children}
-    </motion.div>
-  </motion.div>
-);
-
-const StatCounter = ({ value, label, suffix = "" }: { value: number; label: string; suffix?: string }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [value]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.5, duration: 0.6 }}
-      className="text-center"
-    >
-      <div className="text-3xl md:text-4xl font-bold gradient-text">
-        {count}{suffix}
-      </div>
-      <div className="text-sm text-muted-foreground mt-1">{label}</div>
-    </motion.div>
-  );
-};
+const titles = ["Data Scientist", "ML Engineer", "AI Developer", "Analytics Expert"];
 
 export const HeroSection = () => {
   const [titleIndex, setTitleIndex] = useState(0);
@@ -71,7 +18,6 @@ export const HeroSection = () => {
       setTimeout(() => setIsDeleting(true), 2000);
       return;
     }
-
     if (isDeleting && displayText === "") {
       setIsDeleting(false);
       setTitleIndex((prev) => (prev + 1) % titles.length);
@@ -90,164 +36,182 @@ export const HeroSection = () => {
   }, [displayText, isDeleting, titleIndex]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+      {/* Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(hsl(var(--accent)/0.035)_1px,transparent_1px),linear-gradient(90deg,hsl(var(--accent)/0.035)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        {/* Soft glow top-left */}
         <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-10 w-72 h-72 bg-secondary/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            x: [0, -50, 0],
-            y: [0, 30, 0]
-          }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
+          className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full blur-3xl"
+          style={{ background: "hsl(var(--secondary)/0.12)" }}
         />
+        {/* Soft glow bottom-right */}
         <motion.div
-          animate={{ scale: [1, 1.3, 1] }}
+          animate={{ scale: [1.1, 1, 1.1], opacity: [0.4, 0.7, 0.4] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-secondary/10 to-accent/10 rounded-full blur-3xl"
+          className="absolute -bottom-32 -right-24 w-[400px] h-[400px] rounded-full blur-3xl"
+          style={{ background: "hsl(var(--accent)/0.10)" }}
         />
-
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
-      {/* Main Content */}
-      <div className="section-container relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Profile Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.6, type: "spring" }}
-            className="mb-12"
-          >
-            {/* Subtle radial glow behind image */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full pointer-events-none"
-              style={{
-                background: "radial-gradient(circle at center, rgba(59,130,246,0.10) 0%, rgba(59,130,246,0.00) 70%)",
-              }}
-            />
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              className="relative w-[140px] h-[140px] md:w-[192px] md:h-[192px] mx-auto flex items-center justify-center"
+      {/* Two-column layout */}
+      <div className="section-container relative z-10 w-full">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-16 py-16 md:py-24">
+
+          {/* ── LEFT: Text Content ── */}
+          <div className="flex-1 max-w-xl text-center md:text-left">
+
+            {/* Greeting */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-base font-medium mb-2"
+              style={{ color: "hsl(var(--accent))" }}
             >
-              {/* Outer ring */}
+              Hi, I'm
+            </motion.p>
+
+            {/* Name */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+              className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight mb-3"
+            >
+              <span className="gradient-text">Siddhesh Masurkar</span>
+            </motion.h1>
+
+            {/* Typewriter Role */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45, duration: 0.6 }}
+              className="text-xl sm:text-2xl font-medium mb-4 h-9 flex items-center justify-center md:justify-start"
+              style={{ color: "hsl(var(--muted-foreground))" }}
+            >
+              <span>{displayText}</span>
+              <span
+                className="inline-block w-0.5 h-6 ml-1"
+                style={{
+                  background: "hsl(var(--accent))",
+                  animation: "blink 1s step-end infinite",
+                }}
+              />
+            </motion.div>
+
+            {/* Location */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65, duration: 0.5 }}
+              className="inline-flex items-center gap-1.5 mb-5 justify-center md:justify-start"
+              style={{ color: "hsl(var(--muted-foreground))" }}
+            >
+              <MapPin className="w-3.5 h-3.5" style={{ color: "hsl(var(--accent))" }} />
+              <span className="text-sm">Mumbai, India</span>
+              <span className="text-base">🇮🇳</span>
+            </motion.div>
+
+            {/* Tagline */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="text-base md:text-lg leading-relaxed mb-8 max-w-[520px] mx-auto md:mx-0"
+              style={{ color: "hsl(var(--muted-foreground))" }}
+            >
+              Transforming complex data into strategic insights. I build{" "}
+              <span className="font-medium" style={{ color: "hsl(var(--foreground))" }}>
+                intelligent ML solutions
+              </span>{" "}
+              that drive business growth.
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.6 }}
+              className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start"
+            >
+              <motion.a
+                href="#projects"
+                className="hero-button"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                View My Work
+              </motion.a>
+              <motion.a
+                href="#contact"
+                className="hero-button-outline"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+              >
+                Start Your Project
+              </motion.a>
+            </motion.div>
+          </div>
+
+          {/* ── RIGHT: Profile Photo ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.7, type: "spring" }}
+            className="flex-shrink-0 flex items-center justify-center"
+          >
+            {/* Glow backdrop */}
+            <div
+              className="relative flex items-center justify-center"
+              style={{ width: 200, height: 200 }}
+            >
+              <div
+                className="absolute inset-0 rounded-full blur-2xl"
+                style={{ background: "hsl(var(--accent)/0.15)", transform: "scale(1.3)" }}
+              />
+
+              {/* Spinning gradient ring */}
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: "conic-gradient(from 0deg, #3B82F6, #60A5FA, #3B82F6, transparent)",
+                  background: "conic-gradient(from 0deg, hsl(var(--accent)), hsl(var(--accent)/0.3), hsl(var(--accent)), transparent)",
                   WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px))",
                   mask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px))",
                 }}
               />
+
               {/* Secondary subtle ring */}
               <div
-                className="absolute inset-[3px] rounded-full"
-                style={{
-                  border: "2px solid rgba(59,130,246,0.25)",
-                }}
+                className="absolute inset-[4px] rounded-full"
+                style={{ border: "1.5px solid hsl(var(--accent)/0.2)" }}
               />
-              {/* Image with padding */}
-              <img
+
+              {/* Photo */}
+              <motion.img
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.25 }}
                 src={profileAvatar}
                 alt="Siddhesh Masurkar"
-                className="relative w-[116px] h-[116px] md:w-[160px] md:h-[160px] rounded-full object-cover"
+                className="relative rounded-full object-cover"
                 style={{
-                  boxShadow: "0 10px 30px rgba(2,6,23,0.12)",
+                  width: 160,
+                  height: 160,
+                  boxShadow: "0 8px 28px hsl(var(--primary)/0.18)",
                 }}
               />
-            </motion.div>
-          </motion.div>
-
-
-          {/* Name */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
-          >
-            Hi, I'm{" "}
-            <span className="gradient-text">Siddhesh Masurkar</span>
-          </motion.h1>
-
-          {/* Typewriter Title */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="text-xl sm:text-2xl md:text-3xl font-medium text-muted-foreground mb-6 h-10"
-          >
-            <span>{displayText}</span>
-            <span className="inline-block w-0.5 h-8 bg-secondary ml-1 animate-blink" />
-          </motion.div>
-
-          {/* Location */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="inline-flex items-center gap-2 text-muted-foreground mb-8"
-          >
-            <MapPin className="w-4 h-4 text-secondary" />
-            <span>Mumbai, India</span>
-            <span className="text-lg">🇮🇳</span>
-          </motion.div>
-
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
-          >
-            Transforming complex data into strategic insights. I build{" "}
-            <span className="text-secondary font-medium">intelligent ML solutions</span> that drive business growth.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-          >
-            <motion.a
-              href="#projects"
-              className="hero-button"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View My Work
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="hero-button-outline"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Your Project
-            </motion.a>
+            </div>
           </motion.div>
 
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -255,14 +219,22 @@ export const HeroSection = () => {
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-muted-foreground"
+          className="flex flex-col items-center gap-1.5"
+          style={{ color: "hsl(var(--muted-foreground))" }}
         >
           <span className="text-xs uppercase tracking-widest">Scroll</span>
-          <ArrowDown className="w-4 h-4" />
+          <ArrowDown className="w-3.5 h-3.5" />
         </motion.div>
       </motion.div>
+
+      <style>{`
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
     </section>
   );
 };
