@@ -113,13 +113,12 @@ const categories: Category[] = [
 ];
 
 const SkillTag = ({ skill, index, featured }: { skill: Skill; index: number; featured?: boolean }) => {
-  const Icon = skill.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, delay: index * 0.015 }}
-      className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border cursor-default select-none transition-all duration-200"
+      className="group inline-flex items-center justify-center px-3 py-1.5 rounded-lg border cursor-default select-none transition-all duration-200"
       style={{
         background: featured ? "hsl(var(--accent) / 0.07)" : "hsl(var(--card))",
         borderColor: featured ? "hsl(var(--accent) / 0.25)" : "hsl(var(--border))",
@@ -130,11 +129,6 @@ const SkillTag = ({ skill, index, featured }: { skill: Skill; index: number; fea
         borderColor: "hsl(var(--accent) / 0.3)",
       }}
     >
-      <Icon
-        className="w-3.5 h-3.5 flex-shrink-0 transition-colors duration-200"
-        style={{ color: "hsl(var(--accent))" }}
-        strokeWidth={1.75}
-      />
       <span className="text-sm font-medium" style={{ color: "hsl(var(--foreground))" }}>
         {skill.label}
       </span>
@@ -154,10 +148,10 @@ const CategoryBlock = ({ category, catIndex }: { category: Category; catIndex: n
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: catIndex * 0.07 }}
-      className="mb-10 last:mb-0"
+      className="mb-6 last:mb-0"
     >
       {/* Category Header */}
-      <div className="flex items-center gap-2.5 mb-4">
+      <div className="flex items-center gap-2.5 mb-2.5">
         <span
           className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0"
           style={{ background: "hsl(var(--accent) / 0.1)" }}
@@ -177,7 +171,7 @@ const CategoryBlock = ({ category, catIndex }: { category: Category; catIndex: n
       </div>
 
       {/* Skills Wrap */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5">
         {category.skills.map((skill, i) => (
           <SkillTag key={skill.label} skill={skill} index={i} featured={isFeatured} />
         ))}
@@ -230,7 +224,7 @@ export const SkillsSection = () => {
 
         {/* Category Blocks */}
         <div
-          className="rounded-2xl border p-6 md:p-8"
+          className="rounded-2xl border p-5 md:p-6"
           style={{ background: "hsl(var(--card))", borderColor: "hsl(var(--border))" }}
         >
           {categories.map((cat, i) => (
