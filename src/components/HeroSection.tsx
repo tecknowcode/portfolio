@@ -36,7 +36,7 @@ export const HeroSection = () => {
   }, [displayText, isDeleting, titleIndex]);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-12">
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Subtle grid */}

@@ -199,7 +199,7 @@ export const SkillsSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          className="text-center mb-9"
         >
           <span className="font-semibold text-sm uppercase tracking-widest" style={{ color: "hsl(var(--accent))" }}>
             Skills & Expertise
