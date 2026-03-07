@@ -167,8 +167,34 @@ export const HeroSection = () => {
             {/* Glow backdrop */}
             <div
               className="relative flex items-center justify-center"
-            style={{ width: 390, height: 390 }}
-...
+              style={{ width: 390, height: 390 }}
+            >
+              <div
+                className="absolute inset-0 rounded-full blur-3xl"
+                style={{ background: "hsl(var(--accent)/0.15)", transform: "scale(1.25)" }}
+              />
+              {/* Spinning gradient ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: "conic-gradient(from 0deg, hsl(var(--accent)), hsl(var(--accent)/0.3), hsl(var(--accent)), transparent)",
+                  WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px))",
+                  mask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #fff calc(100% - 2px))",
+                }}
+              />
+              {/* Secondary subtle ring */}
+              <div
+                className="absolute inset-[4px] rounded-full"
+                style={{ border: "1.5px solid hsl(var(--accent)/0.2)" }}
+              />
+              {/* Photo */}
+              <motion.img
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.25 }}
+                src={profileAvatar}
+                alt="Siddhesh Masurkar"
                 className="relative rounded-full object-cover w-[250px] h-[250px] md:w-[340px] md:h-[340px]"
                 style={{
                   boxShadow: "0 12px 40px hsl(var(--primary)/0.18)",
