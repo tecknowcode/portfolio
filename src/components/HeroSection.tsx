@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, ArrowDown } from "lucide-react";
 import profileAvatar from "@/assets/profile-avatar.jpg";
+import { OrbitRings } from "@/components/OrbitRings";
 
 const titles = ["Data Scientist", "ML Engineer", "AI Developer", "Analytics Expert"];
 
