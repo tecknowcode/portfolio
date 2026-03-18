@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X, Award, BookOpen, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -126,6 +126,20 @@ export const CertificationsSection = () => {
 
   const filtered = certificates.filter((c) => c.type === activeTab);
 
+  const closeModal = useCallback(() => setSelectedCert(null), []);
+
+  // Escape key + scroll lock
+  useEffect(() => {
+    if (!selectedCert) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeModal(); };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [selectedCert, closeModal]);
+
   return (
     <>
       <section id="certifications" className="py-24 md:py-32 relative overflow-hidden">
@@ -181,7 +195,7 @@ export const CertificationsSection = () => {
             </div>
           </motion.div>
 
-          {/* Grid */}
+          {/* Grid — 5 cols desktop, 3 cols md, 2 cols sm, 1 col mobile */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -189,37 +203,38 @@ export const CertificationsSection = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35 }}
-              className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 max-w-[1400px] mx-auto"
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 max-w-[1400px] mx-auto"
             >
               {filtered.map((cert, index) => (
                 <motion.div
                   key={cert.title}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
                   onClick={() => setSelectedCert(cert)}
-                  className="group cursor-pointer bg-card border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                  style={{ boxShadow: "0 2px 12px rgba(15, 23, 42, 0.06)" }}
+                  whileHover={{ y: -5, transition: { duration: 0.22, ease: "easeOut" } }}
+                  className="group cursor-pointer bg-card border border-border rounded-2xl overflow-hidden"
+                  style={{ boxShadow: "0 2px 12px hsl(var(--foreground) / 0.05)" }}
                 >
-                  {/* Thumbnail */}
+                  {/* Thumbnail — no zoom on hover */}
                   <div className="relative overflow-hidden aspect-[3/2]">
                     <img
                       src={cert.image}
                       alt={cert.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover"
                     />
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-primary/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="flex items-center gap-2 text-primary-foreground text-sm font-medium bg-accent px-4 py-2 rounded-full shadow-lg">
-                        <ExternalLink className="w-4 h-4" />
-                        View Certificate
+                    {/* Hover overlay — click cue only */}
+                    <div className="absolute inset-0 bg-primary/55 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="flex items-center gap-1.5 text-primary-foreground text-xs font-medium bg-accent/90 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm">
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        View
                       </span>
                     </div>
-                    {/* Badge */}
-                    <div className="absolute top-3 left-3">
+                    {/* Type badge */}
+                    <div className="absolute top-2.5 left-2.5">
                       <Badge
                         variant="secondary"
-                        className="text-[10px] uppercase tracking-wider bg-card/90 text-foreground backdrop-blur-sm border-0"
+                        className="text-[9px] uppercase tracking-wider bg-card/90 text-foreground backdrop-blur-sm border-0 px-2 py-0.5"
                       >
                         {cert.type === "certification" ? "Certification" : "FDP"}
                       </Badge>
@@ -227,11 +242,11 @@ export const CertificationsSection = () => {
                   </div>
 
                   {/* Meta */}
-                  <div className="p-4">
-                    <h4 className="font-semibold text-sm text-foreground line-clamp-2 mb-1.5 group-hover:text-accent transition-colors duration-300">
+                  <div className="p-3.5">
+                    <h4 className="font-semibold text-xs text-foreground line-clamp-2 mb-1 group-hover:text-accent transition-colors duration-300 leading-snug">
                       {cert.title}
                     </h4>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-[11px] text-muted-foreground leading-none">
                       {cert.issuer} &middot; {cert.year}
                     </p>
                   </div>
@@ -258,33 +273,18 @@ export const CertificationsSection = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.55 + i * 0.08 }}
-                className="group flex flex-col items-center justify-center text-center rounded-2xl px-6 py-8 transition-all duration-300 cursor-default"
+                whileHover={{ y: -4, boxShadow: "0 8px 28px hsl(var(--accent) / 0.14)", transition: { duration: 0.2 } }}
+                className="flex flex-col items-center justify-center text-center rounded-2xl px-6 py-8 transition-colors duration-300 cursor-default"
                 style={{
                   background: "hsl(var(--card))",
                   border: "1px solid hsl(var(--border))",
                   boxShadow: "0 2px 12px hsl(var(--foreground) / 0.05)",
                 }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 28px hsl(var(--accent) / 0.14)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "hsl(var(--accent) / 0.3)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px hsl(var(--foreground) / 0.05)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "hsl(var(--border))";
-                }}
               >
-                <span
-                  className="text-4xl font-extrabold mb-2 leading-none"
-                  style={{ color: "hsl(var(--accent))" }}
-                >
+                <span className="text-4xl font-extrabold mb-2 leading-none text-accent">
                   {stat.number}
                 </span>
-                <span
-                  className="text-sm font-medium"
-                  style={{ color: "hsl(var(--muted-foreground))" }}
-                >
+                <span className="text-sm font-medium text-muted-foreground">
                   {stat.label}
                 </span>
               </motion.div>
@@ -293,58 +293,67 @@ export const CertificationsSection = () => {
         </div>
       </section>
 
-      {/* Modal */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedCert && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/50 backdrop-blur-sm"
-            onClick={() => setSelectedCert(null)}
+            transition={{ duration: 0.22 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+            onClick={closeModal}
           >
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-background/80 backdrop-blur-md" />
+
+            {/* Modal panel */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              initial={{ opacity: 0, scale: 0.93, y: 24 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="relative bg-card border border-border rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden"
+              exit={{ opacity: 0, scale: 0.93, y: 24 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-10 bg-card border border-border rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden"
+              style={{ boxShadow: "0 32px 80px hsl(var(--foreground) / 0.12), 0 0 0 1px hsl(var(--border))" }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close */}
+              {/* Close button */}
               <button
-                onClick={() => setSelectedCert(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-card/80 backdrop-blur-sm border border-border hover:bg-muted transition-colors"
+                onClick={closeModal}
+                className="absolute top-4 right-4 z-20 p-2 rounded-full bg-card/90 backdrop-blur-sm border border-border hover:bg-muted hover:border-accent/40 transition-all duration-200 shadow-md"
+                aria-label="Close"
               >
                 <X className="w-4 h-4 text-foreground" />
               </button>
 
-              {/* Image */}
-              <div className="w-full aspect-[16/10] overflow-hidden">
+              {/* Certificate image — fully contained, not cropped */}
+              <div className="w-full bg-muted/30 flex items-center justify-center p-6 pt-10">
                 <img
                   src={selectedCert.image}
                   alt={selectedCert.title}
-                  className="w-full h-full object-cover"
+                  className="w-full max-h-[55vh] object-contain rounded-xl"
+                  style={{ filter: "drop-shadow(0 4px 24px hsl(var(--foreground) / 0.12))" }}
                 />
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <Badge
-                  variant="secondary"
-                  className="text-[10px] uppercase tracking-wider mb-3"
-                >
-                  {selectedCert.type === "certification" ? "Certification" : "FDP / Workshop"}
-                </Badge>
-                <h3 className="text-xl font-bold text-foreground mb-1">
-                  {selectedCert.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {selectedCert.issuer} &middot; {selectedCert.year}
-                </p>
+              {/* Meta row */}
+              <div className="px-6 py-5 border-t border-border flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                <div>
+                  <Badge
+                    variant="secondary"
+                    className="text-[10px] uppercase tracking-wider mb-2"
+                  >
+                    {selectedCert.type === "certification" ? "Certification" : "FDP / Workshop"}
+                  </Badge>
+                  <h3 className="text-lg font-bold text-foreground mb-0.5">
+                    {selectedCert.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {selectedCert.issuer} &middot; {selectedCert.year}
+                  </p>
+                </div>
                 {selectedCert.description && (
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed sm:max-w-xs sm:text-right">
                     {selectedCert.description}
                   </p>
                 )}
