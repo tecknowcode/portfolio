@@ -4,52 +4,44 @@ import { useRef } from "react";
 import { Briefcase, GraduationCap, BookOpen, TrendingUp, Brain } from "lucide-react";
 
 const stats = [
-  { number: "10+", label: "Years Experience" },
-  { number: "25+", label: "Projects Completed" },
+  { number: "15+", label: "Years Experience" },
+  { number: "15+", label: "Projects Completed" },
   { number: "100+", label: "Students Mentored" },
-  { number: "5+", label: "Certifications" },
+  { number: "25+", label: "Certifications" },
 ];
 
 const careerJourney = [
   {
-    period: "2023 – Present",
-    role: "Senior Data Scientist",
-    org: "Freelance / Consulting",
+    period: "2024 – 2026",
+    role: "Masters in DSML",
+    org: "Scalar Academy",
     icon: TrendingUp,
     current: true,
-    bullets: [
-      "Architecting end-to-end ML pipelines for enterprise clients, reducing model deployment time by 40%.",
-    ],
+    bullets: [],
   },
   {
-    period: "2022 – 2023",
-    role: "Data Science Mentor",
-    org: "Scaler Academy",
+    period: "2017 – 2020",
+    role: "ME in Computer Engineering",
+    org: "Mumbai University",
     icon: Brain,
     current: false,
-    bullets: [
-      "Mentored 100+ students through a structured ML curriculum, achieving a 90%+ placement rate.",
-    ],
+    bullets: [],
   },
   {
-    period: "2015 – 2022",
-    role: "Machine Learning Engineer",
-    org: "Industry (Analytics & AI)",
+    period: "2003 – 2007",
+    role: "BE in Computer Engineering",
+    org: "Mumbai University",
     icon: Briefcase,
     current: false,
-    bullets: [
-      "Built and deployed scalable ML services on AWS and GCP, serving millions of predictions daily.",
-    ],
+    bullets: [],
   },
   {
-    period: "2007 – 2015",
-    role: "Lecturer – Computer Engineering",
-    org: "Mumbai University",
-    icon: GraduationCap,
+    period: "2000 – 2003",
+    role: "Diploma in Computer Engg.",
+    org: "MSBTE",
+    icon: Briefcase,
     current: false,
-    bullets: [
-      "Taught core CS subjects and guided 50+ final-year projects, several published in IEEE conferences.",
-    ],
+    bullets: [],
   },
 ];
 
@@ -87,14 +79,21 @@ export const AboutSection = () => {
               Siddhesh Masurkar
             </h3>
             <p className="text-accent font-semibold text-lg mb-6">
-              Senior Data Scientist | AI Solutions Architect
+              Data Scientist | ML Engineer
             </p>
 
             {/* Brand Statement */}
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10">
+            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10 text-justify">
               I transform complex data into intelligent systems that drive business decisions.
-              With over a decade of experience in analytics, machine learning, and education,
-              I specialize in building end-to-end AI solutions that create measurable impact.
+              With over a 5 years of experience in analytics, machine learning, and education,
+              I specialize in building end-to-end AI solutions that create measurable impact. 
+            <br></br>
+              I am experienced Data Scientist (5+ years) skilled in machine learning, deep learning, 
+              time series forecasting, and statistical modeling with hands-on expertise in NLP, PyTorch. 
+            <br></br>  
+              Proven track record of building scalable, interpretable models and delivering actionable 
+              insights in collaboration with cross-functional teams. Passionate about mentoring, knowledge 
+              sharing, and exploring emerging areas like LLM, agentic AI. 
             </p>
 
             {/* Stats Grid */}
@@ -124,7 +123,7 @@ export const AboutSection = () => {
             {/* Career Journey Timeline */}
             <div className="bg-card rounded-[18px] p-7 border border-border shadow-sm">
               <span className="text-accent font-medium text-xs uppercase tracking-widest">Career Path</span>
-              <h4 className="text-xl font-bold text-foreground mt-1 mb-7">Professional Journey</h4>
+              <h4 className="text-xl font-bold text-foreground mt-1 mb-7">Academic Foundation</h4>
 
               <div className="relative pl-9">
                 {/* Vertical line */}

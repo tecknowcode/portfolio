@@ -17,10 +17,10 @@ interface Certificate {
 const certificates: Certificate[] = [
   {
     title: "IBM Data Science Professional",
-    issuer: "IBM",
-    year: "2023",
+    issuer: "Coursera",
+    year: "Mar 2023",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop",
+    image: "src/assets/certificates/IBM_DS.jpg",
     description: "Comprehensive professional certification covering data science methodologies, Python, SQL, machine learning, and data visualization.",
   },
   {

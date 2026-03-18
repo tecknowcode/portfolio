@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Star, Brain, BarChart2, Layers, Cloud, Database, Eye, Sigma, Binary, GitBranch, Container, Workflow, PieChart, LineChart, BookOpen, FlaskConical, Network, ScanSearch, Cpu, Table2, HardDrive, BarChart, Microscope, Calculator, TrendingUp, Globe, Server } from "lucide-react";
+import { Star, Brain, BarChart2, Layers, Cloud, Database, Eye, Sigma, Binary, GitBranch, Container, Workflow, PieChart, LineChart, BookOpen, FlaskConical, Network, ScanSearch, Cpu, Table2, HardDrive, BarChart, Microscope, Calculator, TrendingUp, Globe, Server, Settings, Wrench  } from "lucide-react";
 
 type Skill = {
   label: string;
@@ -27,8 +27,8 @@ const categories: Category[] = [
       { label: "Scikit-Learn", icon: Layers, featured: true },
       { label: "AWS", icon: Cloud, featured: true },
       { label: "Docker", icon: Container, featured: true },
-      { label: "Tableau", icon: BarChart2, featured: true },
-      { label: "Power BI", icon: PieChart, featured: true },
+      { label: "MLflow", icon: BarChart2, featured: true },
+      { label: "Kubernetes", icon: PieChart, featured: true },
     ],
   },
   {
@@ -60,10 +60,11 @@ const categories: Category[] = [
       { label: "NLTK", icon: BookOpen },
       { label: "Matplotlib", icon: LineChart },
       { label: "Seaborn", icon: BarChart2 },
+      { label: "Flask", icon: Server },
     ],
   },
   {
-    title: "Cloud & DevOps",
+    title: "Cloud & MLOps",
     icon: Cloud,
     skills: [
       { label: "AWS", icon: Cloud },
@@ -74,7 +75,10 @@ const categories: Category[] = [
       { label: "Git", icon: GitBranch },
       { label: "GitHub", icon: Globe },
       { label: "Flask", icon: Server },
-      { label: "Streamlit", icon: BarChart },
+      { label: "Flask", icon: Server },
+      { label: "Kubernetes", icon: Server },
+      { label: "Prometheus", icon: Server },
+      { label: "Grafana", icon: Server },
     ],
   },
   {
@@ -86,6 +90,7 @@ const categories: Category[] = [
       { label: "MongoDB", icon: HardDrive },
       { label: "BigQuery", icon: Database },
       { label: "RDBMS", icon: Table2 },
+      // { label: "NoSQL", icon: Database },
     ],
   },
   {
@@ -97,6 +102,7 @@ const categories: Category[] = [
       { label: "Looker", icon: Eye },
       { label: "Excel", icon: Table2 },
       { label: "GenAI Tools", icon: Cpu },
+      { label: "Streamlit", icon: BarChart },
     ],
   },
   {
@@ -240,7 +246,7 @@ export const SkillsSection = () => {
           className="text-center mt-8"
         >
           <span className="text-xs font-medium px-3 py-1 rounded-full" style={{ color: "hsl(var(--muted-foreground))", background: "hsl(var(--muted))" }}>
-            {totalSkills} unique skills across {categories.length} categories
+            {totalSkills} unique skills across {categories.length-1} categories
           </span>
         </motion.div>
       </div>
