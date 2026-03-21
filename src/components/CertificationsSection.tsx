@@ -3,6 +3,18 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X, Award, BookOpen, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
+const certImages = import.meta.glob(
+  "/src/assets/certificates/*.{jpg,png,jpeg}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const getImage = (name: string): string => {
+  return (certImages[`/src/assets/certificates/${name}`] as string) ?? "";
+};
+
 type CertType = "certification" | "fdp";
 
 interface Certificate {
@@ -20,7 +32,7 @@ const certificates: Certificate[] = [
     issuer: "Coursera",
     year: "Mar 2023",
     type: "certification",
-    image: "src/assets/certificates/IBM_DS.jpg",
+    image: getImage("IBM_DS.jpg"),
     description: "Comprehensive professional certification covering data science methodologies, Python, SQL, machine learning, and data visualization.",
   },
   {
@@ -28,7 +40,7 @@ const certificates: Certificate[] = [
     issuer: "Coursera (Stanford)",
     year: "2023",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop",
+    image: getImage("ML_Specialization.jpg"),
     description: "Advanced specialization in supervised learning, unsupervised learning, recommender systems, and reinforcement learning.",
   },
   {
@@ -36,7 +48,7 @@ const certificates: Certificate[] = [
     issuer: "DataCamp",
     year: "2022",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    image: getImage("Data_Analyst.jpg"),
     description: "Professional certification in data analysis using Python, pandas, statistical methods, and data visualization techniques.",
   },
   {
@@ -44,7 +56,7 @@ const certificates: Certificate[] = [
     issuer: "IBM",
     year: "2022",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop",
+    image: getImage("Python_DS.jpg"),
     description: "Certification covering Python programming fundamentals, data structures, and libraries for data science applications.",
   },
   {
@@ -52,7 +64,7 @@ const certificates: Certificate[] = [
     issuer: "Coursera",
     year: "2023",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+    image: getImage("Deep_Learning_TF.jpg"),
     description: "Hands-on certification in building and training deep neural networks using TensorFlow and Keras.",
   },
   {
@@ -60,7 +72,7 @@ const certificates: Certificate[] = [
     issuer: "Amazon Web Services",
     year: "2023",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=400&fit=crop",
+    image: getImage("AWS_Cloud.jpg"),
     description: "Foundational certification covering AWS cloud concepts, services, security, architecture, and pricing.",
   },
   {
@@ -68,7 +80,7 @@ const certificates: Certificate[] = [
     issuer: "Coursera",
     year: "2022",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=600&h=400&fit=crop",
+    image: getImage("NLP.jpg"),
     description: "Specialization in NLP techniques including text classification, sentiment analysis, and sequence models.",
   },
   {
@@ -76,7 +88,7 @@ const certificates: Certificate[] = [
     issuer: "UC Davis (Coursera)",
     year: "2022",
     type: "certification",
-    image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop",
+    image: getImage("SQL_DS.jpg"),
     description: "Certification in SQL querying, data manipulation, aggregation, and database design for data science workflows.",
   },
   {
@@ -84,7 +96,7 @@ const certificates: Certificate[] = [
     issuer: "AICTE / ISTE",
     year: "2023",
     type: "fdp",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=400&fit=crop",
+    image: getImage("FDP_AI_ML.jpg"),
     description: "Faculty Development Program covering advanced AI/ML concepts, hands-on labs, and pedagogical methods.",
   },
   {
@@ -92,7 +104,7 @@ const certificates: Certificate[] = [
     issuer: "IIT Bombay",
     year: "2023",
     type: "fdp",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=400&fit=crop",
+    image: getImage("Workshop_DL.jpg"),
     description: "Intensive workshop on deep learning architectures, CNNs, RNNs, and practical applications in research.",
   },
   {
@@ -100,7 +112,7 @@ const certificates: Certificate[] = [
     issuer: "NPTEL / SWAYAM",
     year: "2022",
     type: "fdp",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    image: getImage("FDP_Data_Analytics.jpg"),
     description: "Faculty program on data analytics methodologies, statistical modeling, and big data tools.",
   },
   {
@@ -108,7 +120,7 @@ const certificates: Certificate[] = [
     issuer: "Google Developer Groups",
     year: "2022",
     type: "fdp",
-    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=600&h=400&fit=crop",
+    image: getImage("Workshop_MLOps.jpg"),
     description: "Hands-on workshop covering cloud-native ML pipelines, model deployment, and MLOps best practices.",
   },
 ];
