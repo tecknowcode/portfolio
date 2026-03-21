@@ -3,6 +3,18 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X, Award, BookOpen, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
+const certImages = import.meta.glob(
+  "/src/assets/certificates/*.{jpg,png,jpeg}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const getImage = (name: string): string => {
+  return (certImages[`/src/assets/certificates/${name}`] as string) ?? "";
+};
+
 type CertType = "certification" | "fdp";
 
 interface Certificate {
