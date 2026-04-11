@@ -245,8 +245,12 @@ export const CertificationsSection = () => {
                     {/* Type badge */}
                     <div className="absolute top-2.5 left-2.5">
                       <Badge
-                        variant="secondary"
-                        className="text-[9px] uppercase tracking-wider bg-card/90 text-foreground backdrop-blur-sm border-0 px-2 py-0.5"
+                        variant="outline"
+                        className={`text-[9px] uppercase tracking-wider px-2.5 py-1 font-semibold backdrop-blur-sm shadow-sm transition-shadow duration-300 group-hover:shadow-md ${
+                          cert.type === "certification"
+                            ? "bg-[#EEF2FF] text-[#4F46E5] border-[#C7D2FE] dark:bg-[rgba(79,70,229,0.15)] dark:text-[#A5B4FC] dark:border-[rgba(165,180,252,0.3)] group-hover:shadow-[0_0_8px_rgba(79,70,229,0.25)] dark:group-hover:shadow-[0_0_8px_rgba(165,180,252,0.2)]"
+                            : "bg-[#ECFEFF] text-[#0891B2] border-[#67E8F9] dark:bg-[rgba(6,182,212,0.15)] dark:text-[#67E8F9] dark:border-[rgba(103,232,249,0.3)] group-hover:shadow-[0_0_8px_rgba(6,182,212,0.25)] dark:group-hover:shadow-[0_0_8px_rgba(103,232,249,0.2)]"
+                        }`}
                       >
                         {cert.type === "certification" ? "Certification" : "FDP"}
                       </Badge>
@@ -352,8 +356,12 @@ export const CertificationsSection = () => {
               <div className="px-6 py-5 border-t border-border flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 <div>
                   <Badge
-                    variant="secondary"
-                    className="text-[10px] uppercase tracking-wider mb-2"
+                    variant="outline"
+                    className={`text-[10px] uppercase tracking-wider mb-2 px-2.5 py-1 font-semibold ${
+                      selectedCert.type === "certification"
+                        ? "bg-[#EEF2FF] text-[#4F46E5] border-[#C7D2FE] dark:bg-[rgba(79,70,229,0.15)] dark:text-[#A5B4FC] dark:border-[rgba(165,180,252,0.3)]"
+                        : "bg-[#ECFEFF] text-[#0891B2] border-[#67E8F9] dark:bg-[rgba(6,182,212,0.15)] dark:text-[#67E8F9] dark:border-[rgba(103,232,249,0.3)]"
+                    }`}
                   >
                     {selectedCert.type === "certification" ? "Certification" : "FDP / Workshop"}
                   </Badge>
