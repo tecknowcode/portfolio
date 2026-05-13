@@ -1,9 +1,39 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, TrendingUp, Shield, FileText, DollarSign, Brain } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  TrendingUp,
+  Shield,
+  FileText,
+  DollarSign,
+  Brain,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const categories = ["All", "Machine Learning", "NLP", "Web Apps", "Analysis"];
+
+/* -------------------- Dynamic Project Image Loader -------------------- */
+
+const certImages = import.meta.glob(
+  "/src/assets/projects/*.{jpg,png,jpeg}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const getImage = (name: string): string => {
+  return (certImages[`/src/assets/projects/${name}`] as string) ?? "";
+};
+
+/* --------------------------------------------------------------------- */
+const categories = [
+  "All",
+  "Machine Learning",
+  "NLP",
+  "Web Apps",
+  "Analysis",
+];
 
 const projects = [
   {
@@ -11,7 +41,7 @@ const projects = [
     title: "Loan Status Prediction",
     description: "ML model predicting loan approval with 92% accuracy using ensemble methods. Analyzed 50K+ applications with feature engineering.",
     category: "Machine Learning",
-    image: "/placeholder.svg",
+    image: "loan_prediction.jpg",
     tech: ["Python", "Scikit-learn", "Pandas", "XGBoost"],
     metrics: { accuracy: 92, records: "50K+" },
     icon: DollarSign,
@@ -24,7 +54,7 @@ const projects = [
     title: "News Sentiment Analysis",
     description: "Real-time sentiment analysis of news articles using NLP and BERT. Processes 10K+ articles daily with 89% accuracy.",
     category: "NLP",
-    image: "/placeholder.svg",
+    image: "loan_prediction.png",
     tech: ["Python", "BERT", "NLP", "Flask"],
     metrics: { accuracy: 89, records: "10K+" },
     icon: FileText,
@@ -99,25 +129,30 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
       onMouseLeave={() => setIsHovered(false)}
       className="project-card group"
     >
-      {/* Card Header with Gradient */}
-      <div className={`relative h-48 bg-gradient-to-br ${project.gradient} p-6 overflow-hidden`}>
+      {/* Card Header */}
+      <div className="relative h-48 overflow-hidden rounded-t-2xl">
+
+        {/* Project Image */}
+        <img
+          src={getImage(project.image)}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+
+        {/* Gradient Overlay */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-70`} />
+
         {/* Icon */}
-        <project.icon className="w-12 h-12 text-white/80" />
-        
-        {/* Decorative Elements */}
-        <motion.div
-          animate={{ rotate: isHovered ? 45 : 0, scale: isHovered ? 1.1 : 1 }}
-          className="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full"
-        />
-        <motion.div
-          animate={{ rotate: isHovered ? -45 : 0, scale: isHovered ? 1.2 : 1 }}
-          className="absolute right-10 -bottom-4 w-20 h-20 bg-white/10 rounded-full"
-        />
+        <div className="absolute top-4 left-4 z-10">
+          <project.icon className="w-10 h-10 text-white/90" />
+        </div>
 
         {/* Metrics Badge */}
         {project.metrics.accuracy > 0 && (
-          <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-            <span className="text-white text-sm font-bold">{project.metrics.accuracy}% Accuracy</span>
+          <div className="absolute top-4 right-4 z-10 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+            <span className="text-white text-sm font-semibold">
+              {project.metrics.accuracy}% Accuracy
+            </span>
           </div>
         )}
       </div>

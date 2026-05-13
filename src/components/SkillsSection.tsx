@@ -75,10 +75,11 @@ const categories: Category[] = [
       { label: "Git", icon: GitBranch },
       { label: "GitHub", icon: Globe },
       { label: "Flask", icon: Server },
-      { label: "Flask", icon: Server },
+      { label: "Jenkins", icon: Server },
       { label: "Kubernetes", icon: Server },
       { label: "Prometheus", icon: Server },
       { label: "Grafana", icon: Server },
+      { label: "Ansible", icon: Server },
     ],
   },
   {
