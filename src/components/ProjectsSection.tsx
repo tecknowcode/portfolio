@@ -314,25 +314,6 @@ const ProjectCard = ({
                   {project.details.overview}
                 </p>
 
-                <DetailBlock title="Challenges Solved" items={project.details.challenges} />
-                <DetailBlock title="Key Features" items={project.details.features} />
-
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2">
-                    Tools & Frameworks
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.details.tools.map((t) => (
-                      <span
-                        key={t}
-                        className="text-xs px-2 py-0.5 bg-muted text-foreground rounded-md border border-border"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
                 <DetailBlock title="Results" items={project.details.results} />
               </div>
             </motion.div>
