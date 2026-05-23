@@ -298,7 +298,7 @@ const ProjectCard = ({
           ))}
         </div>
 
-        {/* Expanded details */
+        {/* Expanded details */}
         <AnimatePresence initial={false}>
           {isExpanded && (
             <motion.div
