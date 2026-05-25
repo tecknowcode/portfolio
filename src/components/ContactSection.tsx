@@ -1,32 +1,87 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Linkedin, Github, Twitter, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
+import emailjs from "emailjs-com";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const socialLinks = [
-  { name: "LinkedIn", icon: Linkedin, href: "#", color: "hover:bg-[#0077B5]" },
-  { name: "GitHub", icon: Github, href: "#", color: "hover:bg-[#333]" },
-  { name: "Twitter", icon: Twitter, href: "#", color: "hover:bg-[#1DA1F2]" },
-  { name: "Email", icon: Mail, href: "mailto:siddhesh@example.com", color: "hover:bg-secondary" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/siddheshumasurkar/", color: "hover:bg-[#0077B5]" },
+  { name: "GitHub", icon: Github, href: "https://github.com/candobettercode", color: "hover:bg-[#333]" },
+  { name: "X", icon: FaXTwitter, href: "https://x.com/siddheshumasurk", color: "hover:bg-black" },
+  { name: "Email", icon: Mail, href: "mailto:masurkar.siddhesh@gmail.com", color: "hover:bg-[#EA4335]" },
 ];
+
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const isEmailJsConfigured = Boolean(serviceId && templateId && publicKey);
 
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setErrorMessage("");
+    setIsSubmitted(false);
+
+    if (!isEmailJsConfigured) {
+      setErrorMessage(
+        "EmailJS is not configured. Add VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY to your environment."
+      );
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          reply_to: formData.email,
+        },
+        publicKey
+      );
+
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("EmailJS send failed", error);
+      setErrorMessage(
+        "Message could not be sent right now. Please try again, or contact me directly via email."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -160,6 +215,9 @@ export const ContactSection = () => {
                     <div>
                       <label className="text-sm font-medium mb-2 block">Name</label>
                       <Input
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         required
                         placeholder="Your name"
                         className="bg-background"
@@ -168,7 +226,10 @@ export const ContactSection = () => {
                     <div>
                       <label className="text-sm font-medium mb-2 block">Email</label>
                       <Input
+                        name="email"
                         type="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                         placeholder="your@email.com"
                         className="bg-background"
@@ -179,6 +240,9 @@ export const ContactSection = () => {
                   <div>
                     <label className="text-sm font-medium mb-2 block">Subject</label>
                     <Input
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
                       required
                       placeholder="Project inquiry, collaboration, etc."
                       className="bg-background"
@@ -188,6 +252,9 @@ export const ContactSection = () => {
                   <div>
                     <label className="text-sm font-medium mb-2 block">Message</label>
                     <Textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       required
                       placeholder="Tell me about your project or idea..."
                       rows={5}
@@ -216,6 +283,10 @@ export const ContactSection = () => {
                       </>
                     )}
                   </Button>
+
+                  {errorMessage && (
+                    <p className="text-sm text-destructive">{errorMessage}</p>
+                  )}
                 </form>
               )}
             </div>

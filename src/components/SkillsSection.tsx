@@ -73,7 +73,8 @@ const categories: Category[] = [
       { label: "DVC", icon: GitBranch },
       { label: "CI/CD", icon: GitBranch },
       { label: "Git", icon: GitBranch },
-      { label: "GitHub", icon: Globe },
+      { label: "GitHub actions", icon: Globe },
+      { label: "ArgoCD", icon: Globe },
       { label: "Flask", icon: Server },
       { label: "Jenkins", icon: Server },
       { label: "Kubernetes", icon: Server },
@@ -115,6 +116,7 @@ const categories: Category[] = [
       { label: "Hypothesis Testing", icon: Microscope },
       { label: "Calculus", icon: Calculator },
       { label: "Time Series", icon: TrendingUp },
+      { label: "Linear Algebra", icon: LineChart },
     ],
   },
 ];

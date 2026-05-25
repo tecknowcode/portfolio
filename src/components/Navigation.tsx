@@ -79,12 +79,12 @@ export const Navigation = () => {
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-2">
               {[
-                { href: "https://github.com", icon: Github, label: "GitHub" },
-                { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
+                { href: "https://github.com/candobettercode", icon: Github, label: "GitHub" },
+                { href: "https://www.linkedin.com/in/siddheshumasurkar/", icon: Linkedin, label: "LinkedIn" },
               ].map(({ href, icon: Icon, label }) => (
                 <motion.a
                   key={label}
-                  href={href}
+                  href={href} 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-accent"
@@ -151,7 +151,7 @@ export const Navigation = () => {
               ))}
               <div className="flex gap-4 mt-8">
                 <motion.a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/siddheshumasurkar/"
                   target="_blank"
                   className="p-3 rounded-full bg-secondary/10 hover:bg-secondary hover:text-white transition-all"
                   whileHover={{ scale: 1.1 }}
@@ -159,7 +159,7 @@ export const Navigation = () => {
                   <Linkedin className="w-5 h-5" />
                 </motion.a>
                 <motion.a
-                  href="https://github.com"
+                  href="https://github.com/candobettercode"
                   target="_blank"
                   className="p-3 rounded-full bg-secondary/10 hover:bg-secondary hover:text-white transition-all"
                   whileHover={{ scale: 1.1 }}
@@ -167,7 +167,7 @@ export const Navigation = () => {
                   <Github className="w-5 h-5" />
                 </motion.a>
                 <motion.a
-                  href="mailto:siddhesh@example.com"
+                  href="mailto:masurkar.siddhesh@gmail.com"
                   className="p-3 rounded-full bg-secondary/10 hover:bg-secondary hover:text-white transition-all"
                   whileHover={{ scale: 1.1 }}
                 >

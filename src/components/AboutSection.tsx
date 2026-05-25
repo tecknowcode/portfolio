@@ -84,16 +84,16 @@ export const AboutSection = () => {
 
             {/* Brand Statement */}
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10 text-justify">
-              I transform complex data into intelligent systems that drive business decisions.
-              With over a 5 years of experience in analytics, machine learning, and education,
-              I specialize in building end-to-end AI solutions that create measurable impact. 
+              I transform complex data into intelligent systems that drive business decisions. 
+              With over 6+ years of experience in analytics, machine learning, cloud technologies, 
+              and education, I specialize in building end-to-end AI solutions and scalable deployment 
+              pipelines that create measurable impact. 
             <br></br>
-              I am experienced Data Scientist (5+ years) skilled in machine learning, deep learning, 
-              time series forecasting, and statistical modeling with hands-on expertise in NLP, PyTorch. 
-            <br></br>  
+              Experienced Data Scientist skilled in machine learning, deep learning, time series 
+              forecasting, statistical modeling, NLP, PyTorch, DevOps, and AWS-based cloud deployment. 
               Proven track record of building scalable, interpretable models and delivering actionable 
-              insights in collaboration with cross-functional teams. Passionate about mentoring, knowledge 
-              sharing, and exploring emerging areas like LLM, agentic AI. 
+              insights through collaboration with cross-functional teams. Passionate about mentoring, 
+              knowledge sharing, and exploring emerging areas like LLMs, Agentic AI, and MLOps.  
             </p>
 
             {/* Stats Grid */}

@@ -38,9 +38,6 @@ type Project = {
   demo: string;
   details: {
     overview: string;
-    challenges: string[];
-    features: string[];
-    tools: string[];
     results: string[];
   };
 };
@@ -60,16 +57,6 @@ const projects: Project[] = [
     details: {
       overview:
         "End-to-end credit risk model that scores loan applications in real time, combining gradient-boosted trees with a calibrated probability layer.",
-      challenges: [
-        "Highly imbalanced approval/denial classes",
-        "Missing values across income and employment fields",
-        "Regulatory need for model explainability",
-      ],
-      features: [
-        "Feature engineering pipeline with 40+ derived signals",
-        "SHAP-based explanations for each decision",
-        "REST API for downstream banking systems",
-      ],
       tools: ["Python", "Scikit-learn", "XGBoost", "Pandas", "SHAP", "FastAPI"],
       results: [
         "92% accuracy, 0.94 ROC-AUC",
@@ -91,17 +78,6 @@ const projects: Project[] = [
     details: {
       overview:
         "Streaming NLP pipeline that ingests news feeds, classifies sentiment, and surfaces trending narratives across sectors.",
-      challenges: [
-        "Domain-specific financial language",
-        "Sarcasm and mixed-sentiment headlines",
-        "Latency budget under 200ms per article",
-      ],
-      features: [
-        "Fine-tuned BERT classifier",
-        "Entity-level sentiment aggregation",
-        "Live dashboard with trend alerts",
-      ],
-      tools: ["Python", "BERT", "Hugging Face", "Flask", "Kafka"],
       results: [
         "89% F1 on financial news benchmark",
         "Processes 10K+ articles per day",
@@ -122,17 +98,6 @@ const projects: Project[] = [
     details: {
       overview:
         "CNN-based image classifier that authenticates currency notes from a single smartphone photo.",
-      challenges: [
-        "Varying lighting and angles",
-        "Subtle visual differences in counterfeits",
-        "On-device inference constraints",
-      ],
-      features: [
-        "Custom CNN with attention layers",
-        "Data augmentation for robustness",
-        "TFLite export for mobile deployment",
-      ],
-      tools: ["Python", "TensorFlow", "OpenCV", "TFLite"],
       results: [
         "95% precision, 93% recall",
         "Sub-second inference on mid-range phones",
@@ -153,17 +118,6 @@ const projects: Project[] = [
     details: {
       overview:
         "Lightweight classifier that flags phishing URLs in browsers and email gateways without relying on blocklists.",
-      challenges: [
-        "Adversarial URL obfuscation",
-        "Concept drift in attack patterns",
-        "Strict false-positive tolerance",
-      ],
-      features: [
-        "60+ lexical and host-based features",
-        "Random Forest with isotonic calibration",
-        "Browser extension prototype",
-      ],
-      tools: ["Python", "Scikit-learn", "Pandas", "WHOIS"],
       results: [
         "91% accuracy on 100K URL corpus",
         "False-positive rate under 1.2%",
@@ -184,17 +138,6 @@ const projects: Project[] = [
     details: {
       overview:
         "Executive analytics suite combining cohort analysis, RFM segmentation, and store-level performance views.",
-      challenges: [
-        "Disparate POS data sources",
-        "Slow legacy reporting cadence",
-        "Non-technical executive audience",
-      ],
-      features: [
-        "Automated ETL into a star schema",
-        "Interactive drilldowns by store and SKU",
-        "Anomaly alerts on margin erosion",
-      ],
-      tools: ["Power BI", "SQL", "Python", "Pandas"],
       results: [
         "Identified $2M+ in revenue uplift",
         "Reporting cycle cut from weekly to daily",
@@ -215,17 +158,6 @@ const projects: Project[] = [
     details: {
       overview:
         "Retrieval-augmented chatbot platform that grounds LLM responses in a company's knowledge base.",
-      challenges: [
-        "Hallucination control",
-        "Multi-tenant data isolation",
-        "Smooth handoff to human agents",
-      ],
-      features: [
-        "RAG pipeline with vector search",
-        "Conversation analytics dashboard",
-        "Plug-in widget for any website",
-      ],
-      tools: ["Python", "FastAPI", "LangChain", "Pinecone", "React"],
       results: [
         "Deflected 62% of tier-1 support tickets",
         "Average response time under 1.5s",

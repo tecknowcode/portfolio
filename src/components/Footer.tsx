@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Heart, ArrowUp, Linkedin, Github, Mail } from "lucide-react";
 
 const socialLinks = [
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
-  { name: "GitHub", icon: Github, href: "#" },
-  { name: "Email", icon: Mail, href: "mailto:siddhesh@example.com" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/siddheshumasurkar/" },
+  { name: "GitHub", icon: Github, href: "https://github.com/candobettercode" },
+  { name: "Email", icon: Mail, href: "mailto:masurkar.siddhesh@gmail.com" },
 ];
 
 const quickLinks = [
@@ -83,7 +83,7 @@ export const Footer = () => {
             <h4 className="font-semibold mb-4">Get in Touch</h4>
             <div className="space-y-3 text-sm text-primary-foreground/60">
               <p>Mumbai, India 🇮🇳</p>
-              <p>siddhesh@example.com</p>
+              <p>masurkar.siddhesh@gmail.com</p>
             </div>
             
             {/* Scroll to Top */}
