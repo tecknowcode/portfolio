@@ -84,16 +84,16 @@ export const AboutSection = () => {
 
             {/* Brand Statement */}
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10 text-justify">
-              I transform complex data into intelligent systems that drive business decisions. 
-              With over 6+ years of experience in analytics, machine learning, cloud technologies, 
-              and education, I specialize in building end-to-end AI solutions and scalable deployment 
-              pipelines that create measurable impact. 
+              I transform complex data into intelligent systems that drive business decisions.
+              With over a 5 years of experience in analytics, machine learning, and education,
+              I specialize in building end-to-end AI solutions that create measurable impact. 
             <br></br>
-              Experienced Data Scientist skilled in machine learning, deep learning, time series 
-              forecasting, statistical modeling, NLP, PyTorch, DevOps, and AWS-based cloud deployment. 
+              I am experienced Data Scientist (5+ years) skilled in machine learning, deep learning, 
+              time series forecasting, and statistical modeling with hands-on expertise in NLP, PyTorch. 
+            <br></br>  
               Proven track record of building scalable, interpretable models and delivering actionable 
-              insights through collaboration with cross-functional teams. Passionate about mentoring, 
-              knowledge sharing, and exploring emerging areas like LLMs, Agentic AI, and MLOps.  
+              insights in collaboration with cross-functional teams. Passionate about mentoring, knowledge 
+              sharing, and exploring emerging areas like LLM, agentic AI. 
             </p>
 
             {/* Stats Grid */}
@@ -150,21 +150,18 @@ export const AboutSection = () => {
                         {/* Entry card */}
                         <div className="bg-muted/40 rounded-[14px] p-4 border border-border transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-accent/30 group-hover:shadow-md cursor-default">
                           {/* Header row */}
-                          <div className="flex items-start gap-3 mb-3">
-                            <div className="w-8 h-8 rounded-[8px] bg-accent/10 flex items-center justify-center flex-shrink-0">
-                              <Icon className="w-4 h-4 text-accent" />
+                          <div className="flex items-start gap-3">
+                            <div className="w-9 h-9 rounded-[8px] bg-accent/10 flex items-center justify-center flex-shrink-0">
+                              <Icon className="w-5 h-5 text-accent" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between gap-2 flex-wrap">
-                                <h5 className="font-semibold text-foreground text-sm leading-snug">{item.role}</h5>
-                                <span className="text-accent/70 text-xs font-medium shrink-0">{item.period}</span>
-                              </div>
+                              <h5 className="font-semibold text-foreground text-sm leading-snug">{item.role}</h5>
                               <p className="text-muted-foreground text-xs mt-0.5">{item.org}</p>
                             </div>
                           </div>
 
                           {/* Bullet points */}
-                          <ul className="space-y-1.5 pl-1">
+                          <ul className="space-y-1.5 pl-1 mt-3">
                             {item.bullets.map((b, i) => (
                               <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
                                 <span className="mt-1.5 w-1 h-1 rounded-full bg-accent/50 shrink-0" />
@@ -187,3 +184,6 @@ export const AboutSection = () => {
     </section>
   );
 };
+
+
+

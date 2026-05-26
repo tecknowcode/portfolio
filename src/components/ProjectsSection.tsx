@@ -126,17 +126,18 @@ const projects: Project[] = [
     id: 4,
     title: "Phishing URL Detection",
     description:
-      "ML system identifying malicious URLs with 91% accuracy. Analyzed URL patterns and domain features.",
+      "AI system identifying malicious URLs with 91% accuracy. Analyzed URL patterns and domain features.",
     category: "ML/DL",
-    secondaryCategory: "DEVOPS",
+    secondaryCategory: "",
     image: "url_phishing.png",
-    tech: ["Python", "Random Forest", "Feature Engineering"],
+    tech: ["Python", "Random Forest", "Feature Engineering", "Pandas", "NumPy", "Scikit-learn", "Git"],
     metrics: { accuracy: 91, records: "100K+" },
-    github: "#",
-    demo: "#",
+    github: "",
+    demo: "",
+    showDemo: false,
     details: {
       overview:
-        "Lightweight classifier that flags phishing URLs in browsers and email gateways without relying on blocklists.",
+        "Developed a phishing website detection model using five ML algorithms (Random Forest, Decision Tree, SVM, XGBoost, AdaBoost and achieving 98% accuracy on benchmark datasets. Performed feature engineering on 23 URL attributes and selected top 10 features; applied robust data preprocessing with Pandas to enhance model performance and decision accuracy.",
       results: [
         "91% accuracy on 100K URL corpus",
         "False-positive rate under 1.2%",
