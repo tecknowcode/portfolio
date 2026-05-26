@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Heart, ArrowUp, Linkedin, Github, Mail } from "lucide-react";
+import { VisitorCounter } from "./VisitorCounter";
 
 const socialLinks = [
   { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/siddheshumasurkar/" },
@@ -103,6 +104,7 @@ export const Footer = () => {
           <p>
             © {new Date().getFullYear()} Siddhesh Masurkar. All rights reserved.
           </p>
+          <VisitorCounter />
           <p className="flex items-center gap-1">
             Made with <Heart className="w-4 h-4 fill-current text-primary-foreground/60" /> in Mumbai
           </p>
@@ -111,3 +113,4 @@ export const Footer = () => {
     </footer>
   );
 };
+0

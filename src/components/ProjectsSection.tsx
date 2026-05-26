@@ -48,23 +48,26 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Loan Status Prediction",
+    title: "Netflix Content Strategy & Data Analysis",
     description:
-      "ML model predicting loan approval with 92% accuracy using ensemble methods. Analyzed 50K+ applications with feature engineering.",
-    category: "ML/DL",
-    secondaryCategory: "EDA",
-    image: "loan_prediction.jpg",
-    tech: ["Python", "Scikit-learn", "Pandas", "XGBoost"],
-    metrics: { accuracy: 92, records: "50K+" },
-    github: "#",
-    demo: "#",
+      "Built a comprehensive data analytics project on Netflix content using exploratory data analysis, visualization, and business intelligence techniques to uncover trends in movies, TV shows, genres, ratings, regional distribution, and subscriber engagement strategies.",
+    category: "EDA",
+    secondaryCategory: "",
+    image: "netflix.png",
+    tech: ["Python","Pandas","NumPy","Matplotlib","Seaborn","Plotly","Datetime","Google Colab",],
+    metrics: { accuracy: 0, records: "8,800+" },
+    github: "https://github.com/candobettercode/WORK.git",
+    demo: "https://drive.google.com/file/d/157FvnB3qIyD7eyf7TxGnIAT28Mm2WdlU/view?usp=drive_link",
     details: {
       overview:
-        "End-to-end credit risk model that scores loan applications in real time, combining gradient-boosted trees with a calibrated probability layer.",
-      tools: ["Python", "Scikit-learn", "XGBoost", "Pandas", "FastAPI"],
+        "Developed an end-to-end Netflix content analytics pipeline using a dataset containing 8,800+ movies and TV shows. Performed extensive data cleaning, missing value treatment, duplicate validation, feature engineering, and outlier analysis on content duration and release trends. Built advanced visual dashboards including pie charts, heatmaps, scatter plots, pair plots, box plots, choropleth maps, and genre analysis to study global content distribution, ratings, release patterns, regional preferences, top actors/directors, and audience targeting strategies. Generated actionable business insights and recommendations focused on content localization, subscriber retention, churn reduction, genre diversification, and personalized recommendation systems.",
       results: [
-        "92% accuracy, 0.94 ROC-AUC",
-        "Reduced manual review workload by 38%",
+        "Analyzed 8,800+ Netflix movies and TV shows across 120+ countries",
+        "Performed detailed EDA with 20+ advanced visualizations and trend analyses",
+        "Identified dominant genres, regional content preferences, and rating distributions",
+        "Built global Netflix content distribution maps using Plotly choropleth visualization",
+        "Conducted outlier analysis on movie and TV show durations using IQR method",
+        "Generated business recommendations for churn reduction and content personalization"
       ],
     },
   },
@@ -72,41 +75,50 @@ const projects: Project[] = [
     id: 2,
     title: "News Sentiment Analysis",
     description:
-      "Real-time sentiment analysis of news articles using NLP and BERT. Processes 10K+ articles daily with 89% accuracy.",
+      "Real-time sentiment analysis of news articles using NLP and BERT. Processes 120K+ articles daily with 89% accuracy.",
     category: "NLP",
     secondaryCategory: "ML/DL",
     image: "news_sentiment.png",
-    tech: ["Python", "BERT", "NLP", "Flask"],
-    metrics: { accuracy: 89, records: "10K+" },
-    github: "#",
+    tech: ["Python", "Flask","Scikit-learn","TensorFlow","NLTK","Pandas","NumPy","TF-IDF Vectorizer","Logistic Regression","SVM","Naive Bayes","HTML","CSS","Jupyter Notebook","Pickle","Git"],
+    metrics: { accuracy: 89, records: "120K+" },
+    github: "https://github.com/candobettercode/news_sentiment_classifier.git",
     demo: "#",
+    showDemo: false,
     details: {
       overview:
-        "Streaming NLP pipeline that ingests news feeds, classifies sentiment, and surfaces trending narratives across sectors.",
+        "Developed a Flask-based web app that integrates Google News API, sentiment analysis (TextBlob), and translation features to generate multilingual, sentiment-tagged news reports with date filters. Implemented a Random Forest-based news classification module using joblib and a custom vectorizer to categorize user input into predefined domains such as business, sports, world, and science.",
       results: [
-        "89% F1 on financial news benchmark",
-        "Processes 10K+ articles per day",
+        "Built and deployed a Flask-based fake news detection system using multiple ML/DL models including Logistic Regression, SVM, Naive Bayes, XGBoost, and Neural Networks",
+        "Implemented NLP preprocessing and TF-IDF vectorization pipeline for accurate real-time news classification",
+        "Integrated serialized .pkl models with interactive frontend templates for seamless prediction and model comparison",
+        "Performed experimentation and evaluation using Jupyter notebooks to optimize fake news classification performance",
       ],
     },
   },
   {
     id: 3,
-    title: "Fake Currency Detection",
+    title: "Target E-Commerce SQL Case Study",
     description:
-      "Computer vision model detecting counterfeit notes with 95% precision. Trained on 20K+ currency images.",
-    category: "ML/DL",
+      "Built an end-to-end SQL analytics project on Target Brazil e-commerce data to analyze customer behavior, sales trends, delivery performance, payment patterns, and regional order distribution using advanced SQL queries and business intelligence techniques.",
+    category: "EDA",
     secondaryCategory: "",
-    image: "fake_currency.png",
-    tech: ["Python", "TensorFlow", "OpenCV", "CNN"],
-    metrics: { accuracy: 95, records: "20K+" },
-    github: "#",
-    demo: "#",
+    image: "ecomm.png",
+    tech: ["SQL","BigQuery","Data Analysis","CTE","Window Functions","Joins","Aggregate Functions","Date Functions","Business Intelligence"],
+    metrics: { accuracy: 0, records: "76K+" },
+    github: "https://github.com/candobettercode/WORK.git",
+    demo: "https://drive.google.com/file/d/1XtBqcUTC5xyEPpq60eCSX1AU55yDhBfp/view?usp=drive_link",
     details: {
       overview:
-        "CNN-based image classifier that authenticates currency notes from a single smartphone photo.",
+        "Developed a comprehensive SQL-based business analytics solution using Target Brazil e-commerce datasets containing customers, orders, payments, and delivery information. Performed exploratory data analysis, customer segmentation by state and city, seasonal order trend analysis, payment behavior analysis, freight cost evaluation, and delivery performance tracking. Utilized advanced SQL concepts including CTEs, joins, window functions, timestamp/date functions, aggregations, and conditional logic to generate actionable business insights on customer ordering patterns, regional sales performance, logistics efficiency, and payment preferences across Brazil.",
       results: [
-        "95% precision, 93% recall",
-        "Sub-second inference on mid-range phones",
+        "Analyzed e-commerce data from 27 states and 4119 cities across Brazil",
+        "Identified 136.98% growth in order value from 2017 to 2018",
+        "Discovered peak order activity during afternoon hours and seasonal monthly trends",
+        "Evaluated delivery efficiency and freight performance across all states",
+        "Analyzed 99K+ orders and customer payment behaviors",
+        "Found credit card as the dominant payment method with 76K+ transactions",
+        "Generated insights on customer distribution, delivery optimization, and regional sales trends",
+        "Performed advanced SQL analysis using CTEs, joins, window functions, and timestamp operations"
       ],
     },
   },
@@ -133,22 +145,26 @@ const projects: Project[] = [
   },
   {
     id: 5,
-    title: "Retail Sales Dashboard",
+    title: "Customer Segmentation using K-Means Clustering",
     description:
-      "Interactive analytics dashboard revealing $2M+ in potential revenue optimization for retail chain.",
-    category: "Analysis",
-    secondaryCategory: "Web Apps",
+      "Built a machine learning-based customer segmentation system using K-Means clustering and RFM analysis on online retail transaction data to identify customer behavior patterns and business-driven customer groups.",
+    category: "EDA",
+    secondaryCategory: "ML/DL",
     image: "customer_segmentation.png",
-    tech: ["Python", "Power BI", "SQL", "Pandas"],
-    metrics: { accuracy: 0, records: "1M+" },
-    github: "#",
-    demo: "#",
+    tech: ["Python","Pandas","NumPy","Scikit-learn","Matplotlib","Seaborn","KMeans","StandardScaler","Silhouette Score","Google Colab"],
+    metrics: { accuracy: 0, records: "525k+" },
+    github: "https://github.com/candobettercode/WORK.git",
+    demo: "https://drive.google.com/file/d/1TtHftR7IYs0wwZrpAWC9KGxgcA20vBfa/view?usp=sharing",
     details: {
       overview:
-        "Executive analytics suite combining cohort analysis, RFM segmentation, and store-level performance views.",
+        "Performed extensive data cleaning using regex validation, null handling, outlier detection, and feature engineering. Built RFM-based features (Recency, Frequency, Monetary Value), applied standard scaling, and implemented K-Means clustering with silhouette score optimization. Designed advanced visual analytics including histograms, boxplots, violin plots, and 3D cluster visualizations to analyze customer purchasing behavior and segment customers into actionable business groups such as Retain, Re-Engage, Reward, Nurture, Pamper, Upsell, and Delight",
       results: [
-        "Identified $2M+ in revenue uplift",
-        "Reporting cycle cut from weekly to daily",
+        "Processed and analyzed 525K+ retail transaction records",
+        "Created 7 business-oriented customer segments using K-Means clustering",
+        "Applied RFM analysis for customer behavior modeling",
+        "Optimized clusters using Elbow Method and Silhouette Score analysis",
+        "Detected and handled monetary and frequency outliers for improved clustering accuracy",
+        "Built interactive visualizations including 3D cluster plots and violin distributions"
       ],
     },
   },
@@ -160,7 +176,7 @@ const projects: Project[] = [
     category: "ML/DL",
     secondaryCategory: "DEVOPS",
     image: "malware.png",
-    tech: ["Python", "TensorFlow", "Scikit-learn", "XGBoost", "Pandas", "NumPy", "Pefile", "Git", "Docker"],
+    tech: ["Python", "TensorFlow", "Scikit-learn", "XGBoost", "Pandas", "NumPy", "Pefile", "Git", "Docker Compose"],
     metrics: { accuracy: 99.5, records: "140K+" },
     github: "https://github.com/candobettercode/pe_malware_detection_sys.git",
     demo: "#",
@@ -250,14 +266,155 @@ const projects: Project[] = [
     image: "facemask.png",
     tech: ["Python", "TensorFlow / Keras", "CNN", "Image Processing", "Git", "Numpy","Data Augmentation"],
     metrics: { accuracy: 92.72, records: "7500+" },
-    github: "#",
+    github: "https://github.com/candobettercode/WORK/blob/main/DL-Face%20mask%20detection%20using%20CNN.ipynb",
     demo: "#",
+    showDemo: false,
     details: {
       overview:
         "Developed a CNN-based image classification model to detect face masks in images. The project involved preprocessing a dataset of masked and unmasked face images, applying data augmentation techniques, and training a deep learning model using TensorFlow/Keras. The final model achieved high accuracy in distinguishing between masked and unmasked faces, demonstrating the effectiveness of CNNs for image classification tasks.",
       results: [
         "High-accuracy binary classification of masked vs unmasked faces",
         "Face mask detection using CNN-based model inference",
+      ],
+    },
+  },
+  {
+    id: 11,
+    title: "Kidney Tumor Detection using Deep Learning",
+    description:
+      "Developed an AI-powered kidney tumor detection system using CNN-based deep learning models for medical image classification.",
+    category: "ML/DL",
+    secondaryCategory: "CLOUD",
+    image: "kidney.png",
+    tech: [  "Python","TensorFlow","Keras","Flask","NumPy","Pandas","TailwindCSS","Docker","GitHub Actions", "EC2", "ECR", "MLflow", "DVC"],
+    metrics: { accuracy: 93.58, records: "350+" },
+    github: "https://github.com/candobettercode/Kidney-Disease-Classification-DLproject.git",
+    demo: "#",
+    showDemo: false,
+    details: {
+      overview:
+        "Built an end-to-end deep learning web application for kidney tumor classification from CT/MRI scan images. Designed a complete ML pipeline including data ingestion, preprocessing, model training, evaluation, and prediction serving using Flask APIs. Integrated real-time image upload, confidence score prediction, responsive UI, Docker containerization, CI/CD automation using GitHub Actions, and AWS deployment with ECR/ECS. Added experiment tracking and pipeline versioning using MLflow and DVC for reproducibility and scalable deployment.",
+      results: [
+        "Achieved 93.58% accuracy in kidney tumor classification on medical imaging dataset",
+        "Automated CI/CD deployment pipeline using Docker & GitHub Actions",
+        "Production-ready Flask web application with responsive UI",
+      ],
+    },
+  },
+  {
+    id: 12,
+    title: "Gemstone Price Prediction using Machine Learning",
+    description:
+      "Built an end-to-end machine learning system for gemstone price prediction using multiple regression algorithms, feature engineering, and model evaluation techniques.",
+    category: "ML/DL",
+    secondaryCategory: "EDA",
+    image: "gems.png",
+    tech: ["Python","Scikit-learn", "XGBoost", "CatBoost", "LightGBM","Pandas", "NumPy","Matplotlib", "Seaborn", "Flask", "Docker", "Git"],
+    metrics: { accuracy: 99.75, records: "300K+" },
+    github: "https://github.com/candobettercode/gems_prediction-ml-project.git",
+    demo: "#",
+    showDemo: false,
+    details: {
+      overview:
+        "Developed a complete ML pipeline for gemstone price prediction involving data preprocessing, exploratory data analysis, feature engineering, model training, and performance comparison across multiple regression algorithms. Implemented Linear Regression, Ridge, Lasso, Random Forest, KNN, Gradient Boosting, XGBoost, CatBoost, LightGBM, and AdaBoost models to evaluate predictive accuracy. Built a deployment-ready architecture with modular coding practices, logging, exception handling, and web-based prediction support.",
+      results: [
+        "Achieved 98.5% Test R² Score using Random Forest Regressor",
+        "Compared 10+ regression models for optimized gemstone price prediction",
+      ],
+    },
+  },
+  {
+    id: 13,
+    title: "Vehicle Insurance ML Pipeline",
+    description:
+      "Built an end-to-end MLOps-based vehicle insurance prediction system with automated training, evaluation, cloud deployment, and CI/CD integration using AWS services.",
+    category: "CLOUD",
+    secondaryCategory: "DEVOPS",
+    image: "vehicle.png",
+    tech: ["Python","Scikit-learn","Pandas","NumPy","MongoDB Atlas","AWS S3","AWS EC2","AWS ECR","Docker","GitHub Actions","Flask","FastAPI","Git"],
+    metrics: { accuracy: 95.27, records: "381K+" },
+    github: "https://github.com/candobettercode/vehicle_insurance_ml_project.git",
+    demo: "#",
+    showDemo: false,
+    details: {
+      overview:
+        "Developed a production-grade machine learning pipeline for vehicle insurance prediction with modular components for data ingestion, validation, transformation, model training, evaluation, and deployment. Integrated MongoDB Atlas for data storage, AWS S3 for model registry, Docker for containerization, and GitHub Actions for automated CI/CD deployment on AWS EC2. Built a web-based prediction interface with automated model comparison and cloud-hosted inference pipeline.",
+      results: [
+        "Automated end-to-end ML workflow with CI/CD pipeline",
+        "Cloud deployment using AWS EC2, S3, and ECR",
+        "Real-time insurance prediction through web interface",
+        "Production-ready modular MLOps architecture",
+      ],
+    },
+  },
+  {
+    id: 14,
+    title: "Loan Status Prediction System",
+    description:
+      "Built a machine learning-powered loan approval prediction system using data preprocessing, feature engineering, and classification models.",
+    category: "ML/DL",
+    secondaryCategory: "DEVOPS",
+    image: "loan.png",
+    tech: ["Python","Scikit-learn","Pandas", "NumPy", "Flask", "Matplotlib","Seaborn","Git","Docker"],
+    metrics: { accuracy: 82, records: "1000+" },
+    github: "https://github.com/candobettercode/loan_app.git",
+    demo: "#",
+    showDemo: false,
+    details: {
+      overview:
+        "Built an interactive Flask-based web application for real-time loan approval prediction using customer financial and demographic data. Designed a complete end-to-end machine learning pipeline including data preprocessing, exploratory data analysis (EDA), feature engineering, model training, evaluation, and deployment with automated prediction workflows and visualization dashboards.",
+      results: [
+        "Achieved 82% prediction accuracy on loan approval dataset",
+        "Real-time loan eligibility prediction through web interface",
+        "Automated preprocessing and prediction pipeline",
+        "Interactive analytics and visualization dashboard"
+      ],
+    },
+  },
+  {
+    id: 15,
+    title: "Spam Detection using Machine Learning",
+    description:
+      "Built an end-to-end spam detection system using multiple machine learning algorithms, DVC pipelines, experiment tracking, and AWS S3 integration.",
+    category: "NLP",
+    secondaryCategory: "CLOUD",
+    image: "spam.png",
+    tech: [ "Python","Scikit-learn","XGBoost", "DVC", "dvclive","AWS S3","Git","Docker"],
+    metrics: { accuracy: 97, records: "5572" },
+    github: "https://github.com/candobettercode/ml_pipeline_dvc.git",
+    demo: "#",
+    showDemo: false,
+    details: {
+      overview:
+        "Developed a modular spam detection pipeline for classifying messages as spam or not spam using multiple machine learning models including SVC, KNN, Naive Bayes, Decision Tree, Logistic Regression, Random Forest, AdaBoost, Bagging Classifier, Extra Trees Classifier, Gradient Boosting, and XGBoost. Implemented end-to-end MLOps workflows including data preprocessing, feature engineering, model training, experiment tracking with dvclive, DVC pipeline automation, parameter management using params.yaml, and remote artifact storage using AWS S3 for reproducibility and scalability.",
+      results: [
+        "Built a machine learning pipeline using Random Forest Regressor (95% R2) with DVC for experiment tracking and automation.",
+        "Developed modular, parameterized pipelines (dvc.yaml, params.yaml) with dvclive for metrics logging.",
+        "Integrated AWS S3 as remote DVC storage for versioning datasets, models, and artifacts.",
+        "Leveraged GitHub for source control and MLOps workflows (dvc exp, dvc repro).",
+      ],
+    },
+  },
+  {
+    id: 16,
+    title: "AI-Based Eye Disease Detection",
+    description:
+      "Built a deep learning-powered medical image classification system for detecting Cataract, Diabetic Retinopathy, Glaucoma, and Normal eye conditions using ML/DL models and transfer learning techniques.",
+    category: "ML/DL",
+    secondaryCategory: "",
+    image: "eye.png",
+    tech: ["Python","TensorFlow", "Keras", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "CNN", "VGG16","DenseNet121","Xception","Git","Docker"],
+    metrics: { accuracy: 94, records: "4000+" },
+    github: "https://github.com/candobettercode/eye_prediction_deep_learning.git",
+    demo: "https://youtu.be/p4HC5rr73qc",
+    details: {
+      overview:
+        "Developed an AI-powered eye disease detection system using retinal/fundus eye images to classify Cataract, Diabetic Retinopathy, Glaucoma, and Normal eye conditions. Implemented and compared multiple Machine Learning and Deep Learning models including Baseline CNN, VGG16, DenseNet121, Xception, Random Forest, and SVM. Designed a complete image preprocessing and classification pipeline with transfer learning, feature extraction, model evaluation, visualization dashboards (Accuracy/Loss Curves, Confusion Matrix), and automated prediction capabilities for medical image analysis.",
+      results: [
+        "High-accuracy multi-class eye disease classification",
+        "Compared ML and transfer learning models for performance optimization",
+        "Automated retinal disease prediction using deep learning",
+        "Improved feature extraction using pretrained CNN architectures",
       ],
     },
   },

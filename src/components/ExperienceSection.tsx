@@ -16,7 +16,7 @@ const experiences = [
       "Developed machine learning models with high predictive accuracy and business relevance.",
       "Specialized in predictive analytics, NLP pipelines, and end-to-end ML workflows.",
     ],
-    tech: ["Python", "TensorFlow", "AWS", "Docker", "Scikit-learn", "NLP"],
+    tech: ["Python", "TensorFlow", "AWS", "Devops", "Scikit-learn", "NLP"],
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const experiences = [
       "Designed and delivered structured curriculum including EDA, model building, and deployment concepts",
       "Guided 50+ final-year and capstone projects from ideation to implementation"
     ],
-    tech: ["Python", "SQL", "ML Basics", "Career Coaching"],
+    tech: ["Python", "SQL", "Machine Learning", "Career Coaching"],
   },
   {
     id: 3,
